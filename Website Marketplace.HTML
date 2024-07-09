@@ -3,22 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valorização de Itens</title>
+    <title>Marketplace Data</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('https://tinyurl.com/bdeza3bp');
+            background-image: url('https://soundtrack-season.vercel.app/Web_Background.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: white;
         }
+         .logo-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+     
+}
+
+.logo-container img {
+    max-width: 30%;
+    height: auto;
+    
+
+        }
         .search-container {
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             text-align: left;
         }
         #searchInput {
-            width: 50%;
+            width: 250px;
             padding: 10px;
             font-size: 12px;
             border: 3px solid #7c9bce;
@@ -27,13 +40,13 @@
             color: white;
         }
         .filter-container {
-            margin-top: 20px;
+            margin-top: 0px;
             text-align: left;
         }
         #filterButton {
     background-color: #7c9bce;
     color: white;
-    padding: 12px;
+    padding: 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -153,8 +166,8 @@
         .rarity-uncommon-legend {
             background-color: #71aada;
         }
-        .rarity-ultra-legend {
-            background-color: #ff00ff; /* Cor de fundo para Fragmento Ultra */
+        .rarity-Comum {
+            background-color: gray; /* Cor de fundo para Fragmento Ultra */
         }
         .legend-text {
             color: white;
@@ -164,6 +177,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+      <div class="logo-container">
+        <img src="https://soundtrack-season.vercel.app/Web_Logo_Market.png" alt="Logo do Meu Site">
+    </div>
+    
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Buscar item..." onkeyup="filterItems()">
     </div>
@@ -171,7 +188,7 @@
     <div class="filter-container">
         <button id="filterButton">Filtro</button>
         <div id="filterOptions" class="filter-options">
-            <div class="filter-option">
+            <div class="filter-option"onclick="redirecionarParaFragmentos()">
                 <img src="https://tinyurl.com/mrxver46" alt="Ícone 1" class="filter-icon">
                 <span>Fragments</span>
             </div>
@@ -202,7 +219,7 @@
         <h2>Nameless Fragment</h2>
         <div class="collection-name">SO2 Collection</div>
         <div class="item-image">
-            <img src="https://tinyurl.com/vkjmx5rj" alt="Nameless Fragment" width="100">
+            <img src="https://soundtrack-season.vercel.app/Web_Nameless_Fragment.png" alt="Nameless Fragment" width="100">
         </div>
         <div class="chart-container">
             <canvas id="chart1" width="400" height="200"></canvas>
@@ -241,7 +258,7 @@
         <h2>Arcane Fragment</h2>
         <div class="collection-name">SO2 Collection</div>
         <div class="item-image">
-            <img src="https://tinyurl.com/zyf2w45b" alt="Arcane Fragment" width="100">
+            <img src="https://soundtrack-season.vercel.app/Web_Arcane_Fragment.jpg" alt="Arcane Fragment" width="100">
         </div>
         <div class="chart-container">
             <canvas id="chart2" width="400" height="200"></canvas>
@@ -280,7 +297,7 @@
         <h2>Legendary Fragment</h2>
         <div class="collection-name">SO2 Collection</div>
         <div class="item-image">
-            <img src="https://tinyurl.com/nh9wpbzc" alt="Legendary Fragment" width="100">
+            <img src="https://soundtrack-season.vercel.app/Web_Legendary_Fragment.jpg" alt="Legendary Fragment" width="100">
         </div>
         <div class="chart-container">
             <canvas id="chart3" width="400" height="200"></canvas>
@@ -318,7 +335,7 @@
     <h2>Epic Fragment</h2>
     <div class="collection-name">SO2 Collection</div>
     <div class="item-image">
-        <img src="https://tinyurl.com/4rv5w9ne" alt="Epic Fragment" width="100">
+        <img src="https://soundtrack-season.vercel.app/Web_Epic_Fragment.jpg" alt="Epic Fragment" width="100">
     </div>
     <div class="chart-container">
         <canvas id="chart4" width="400" height="200"></canvas>
@@ -356,7 +373,7 @@
     <h2>Rare Fragment</h2>
     <div class="collection-name">SO2 Collection</div>
     <div class="item-image">
-        <img src="https://tinyurl.com/37ccdptx" alt="Rare Fragment" width="100">
+        <img src="https://soundtrack-season.vercel.app/Web_Rare_Fragment.png" alt="Rare Fragment" width="100">
     </div>
     <div class="chart-container">
         <canvas id="chart5" width="400" height="200"></canvas>
@@ -394,7 +411,7 @@
         <h2>Umcommom Fragment</h2>
         <div class="collection-name">SO2 Collection</div>
         <div class="item-image">
-            <img src="https://tinyurl.com/ycxexa8h" alt="uncommom Fragment" width="100">
+            <img src="https://soundtrack-season.vercel.app/Web_Uncommom_Fragment.png" alt="uncommom Fragment" width="100">
         </div>
         <div class="chart-container">
             <canvas id="chart6" width="400" height="200"></canvas>
@@ -432,7 +449,7 @@
     <h2>M9 Bayoneta Kumo</h2>
     <div class="collection-name">Winter Fun 2022</div>
     <div class="item-image">
-        <img src="https://tinyurl.com/5n6rxb82" alt="M9 Bayoneta Kumo" width="100">
+        <img src="https://soundtrack-season.vercel.app/Web_M9_Kumo.jpg" alt="M9 Bayoneta Kumo" width="100">
     </div>
     <div class="chart-container">
         <canvas id="chart7" width="400" height="200"></canvas>
@@ -698,7 +715,9 @@
         const filterOptions = document.getElementById('filterOptions');
         filterOptions.style.display = filterOptions.style.display === 'none' || !filterOptions.style.display ? 'block' : 'none';
     });
-    
+     function redirecionarParaFragmentos() {
+    window.location.href = "https://soundtrack-season.vercel.app/Website%20Marketplace%20Fragment.HTML";
+    }
 </script>
 </body>
 </html>
