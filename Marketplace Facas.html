@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace Facas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://soundtrack-season.vercel.app/Web_Background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+         .logo-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+     
+}
+
+.logo-container img {
+    max-width: 30%;
+    height: auto;
+    
+
+        }
+        .search-container {
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        #searchInput {
+            width: 250px;
+            padding: 10px;
+            font-size: 12px;
+            border: 3px solid #7c9bce;
+            border-radius: 4px;
+            background-color: #1c1c1c;
+            color: white;
+        }
+        .filter-container {
+            margin-top: 0px;
+            text-align: left;
+        }
+        #filterButton {
+    background-color: #7c9bce;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    width: 60%;
+    max-width: 200px;
+
+        }
+        #filterOptions {
+            display: none;
+            margin-top: 10px;
+            background-color: #1c1c1c;
+            border: 2px solid #7c9bce;
+            border-radius: 5px;
+            padding: 10px;
+            position: absolute;
+            width: 60%;
+        }
+        .filter-option {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            cursor: pointer;
+        }
+        .filter-option:hover {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .filter-icon {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+        .item-container {
+            margin-bottom: 40px;
+            text-align: left;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            min-width: 300px;
+        }
+        .item-container h2 {
+            margin-bottom: 10px;
+        }
+        .collection-name {
+            font-size: 12px;
+            font-weight: 300;
+            color: white;
+            margin-bottom: 10px;
+        }
+        .item-image {
+            margin-bottom: -5px;
+        }
+        .unit-table {
+            width: 100%;
+            border: 2px solid #7c9bce;
+            border-collapse: collapse;
+        }
+        .unit-table th, .unit-table td {
+            border: transparent;
+            padding: 3px;
+            text-align: center;
+            font-size: 8px;
+        }
+        .unit-table th {
+            color: white;
+        }
+        .unit-table th.value,
+        .unit-table th.units,
+        .unit-table th.date {
+            background-color: #1c1c1c;
+        }
+        .unit-table td.value-cell,
+        .unit-table td.units-cell,
+        .unit-table td.date-cell {
+            background-color: #1c1c1c;
+            color: white;
+        }
+        .chart-container {
+            background-color: #1c1c1c;
+            padding: 10px;
+            border: 2px solid #7c9bce;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+        .legend-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .rarity-legend {
+            width: 20px;
+            height: 10px;
+            margin-right: 10px;
+            border: 1px solid #fff;
+        }
+        .rarity-nameless-legend {
+            background-color: #ffae42;
+        }
+        .rarity-arcane-legend {
+            background-color: #ff0000;
+        }
+        .rarity-legendary-legend {
+            background-color: #800080;
+        }
+        .rarity-epic-legend {
+            background-color: #5b0a8c;
+        }
+        .rarity-rare-legend {
+            background-color: #00008b;
+            border: 1px solid #7c9bce;
+        }
+        .rarity-uncommon-legend {
+            background-color: #71aada;
+        }
+        .rarity-Comum {
+            background-color: gray; /* Cor de fundo para Fragmento Ultra */
+        }
+        .legend-text {
+            color: white;
+            font-size: 12px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+      <div class="logo-container">
+        <img src="https://soundtrack-season.vercel.app/Web_Logo_Market.png" alt="Logo do Meu Site">
+    </div>
+    
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar Faca..." onkeyup="filterItems()">
+    </div>
+
+    <div class="filter-container">
+        <button id="filterButton">Filtro</button>
+        <div id="filterOptions" class="filter-options">
+            <div class="filter-option"onclick="redirecionarParaFragmentos()">
+                <img src="https://tinyurl.com/mrxver46" alt="Ícone 1" class="filter-icon">
+                <span>Fragments</span>
+            </div>
+            <div class="filter-option">
+                <img src="https://via.placeholder.com/20x20?text=2" alt="Ícone 2" class="filter-icon">
+                <span>Facas</span>
+            </div>
+            <div class="filter-option">
+                <img src="https://via.placeholder.com/20x20?text=3" alt="Ícone 3" class="filter-icon">
+                <span></span>
+            </div>
+            <div class="filter-option">
+                <img src="https://via.placeholder.com/20x20?text=4" alt="Ícone 4" class="filter-icon">
+                <span></span>
+            </div>
+            <div class="filter-option">
+                <img src="https://via.placeholder.com/20x20?text=5" alt="Ícone 5" class="filter-icon">
+                <span></span>
+            </div>
+            <div class="filter-option">
+                <img src="/20x20?text=6" alt="Ícone 6" class="filter-icon">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="item-container" id="namelessFragment">      
+    <h2>M9 Bayoneta Kumo</h2>
+    <div class="collection-name">Winter Fun 2022</div>
+    <div class="item-image">
+        <img src="https://soundtrack-season.vercel.app/Web_M9_Kumo.jpg" alt="M9 Bayoneta Kumo" width="100">
+    </div>
+    <div class="chart-container">
+        <canvas id="chart1" width="400" height="200"></canvas>
+    </div>
+    <table class="unit-table">
+        <thead>
+            <tr>
+                <th class="value">Valor</th>
+                <th class="value value-cell">3.550</th>
+                <th class="value value-cell"></th>
+                <th class="value value-cell">5.948</th>
+                <th class="value value-cell">6.875</th>
+                <th class="value value-cell">5.635</th>
+            </tr>
+            <tr>
+                <th class="units">Unidades</th>
+                <td class="units-cell">173</td>
+                <td class="units-cell"></td>
+                <td class="units-cell">101</td>
+                <td class="units-cell">83</td>
+                <td class="units-cell">91</td>
+            </tr>
+            <tr>
+                <th class="date">Data</th>
+                <td class="date-cell">06/02/2022</td>              
+                <td class="date-cell"></td>
+                <td class="date-cell">20/01/2023</td>
+                <td class="date-cell">01/01/2024</td>
+                <td class="date-cell">08/7/2024</td>
+            </tr>
+        </thead>
+    </table>
+</div>
+      
+    
+   <script>
+    // Função para criar gráficos
+    function createChart(chartId, labels, data, rarity) {
+        var ctx = document.getElementById(chartId).getContext('2d');
+        var colors = [];
+        for (let i = 1; i < data.length; i++) {
+            if (data[i] > data[i - 1]) {
+                colors.push('#00ff00'); // Verde para aumento
+            } else {
+                colors.push('#ff0000'); // Vermelho para diminuição
+            }
+        }
+
+        // Calcula a variação percentual
+        var percentageChanges = calculatePercentageChange(data);
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Valor',
+                    data: data,
+                    borderColor: '#00ff00',
+                    backgroundColor: 'rgba(0, 255, 0, 0.2)',
+                    borderWidth: 0.5,
+                    pointBorderColor: function(context) {
+                        return context.dataIndex === 0 ? '#00ff00' : colors[context.dataIndex - 1];
+                    },
+                    pointBackgroundColor: function(context) {
+                        return context.dataIndex === 0 ? '#00ff00' : colors[context.dataIndex - 1];
+                    }
+                }]
+            },
+            options: {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(context) {
+                                return '';
+                            },
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y;
+                                }
+                                label += ` (${percentageChanges[context.dataIndex] || 0}%)`;
+                                return label;
+                            },
+                            afterBody: function() {
+                                return `Rarity: ${rarity.charAt(0).toUpperCase() + rarity.slice(1)}`;
+                            }
+                        },
+                        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                        borderColor: 'transparent',
+                        borderWidth: 1,
+                    }
+                },
+                scales: {
+                    y: {
+                        position: 'right',
+                        beginAtZero: true,
+                        grid: {
+                            color: 'transparent'
+                        },
+                        border: {
+                            color: '#d3d3d3'
+                        },
+                        ticks: {
+                            maxRotation: 0,
+                            minRotation: 0,
+                            font: {
+                                size: 10
+                            },
+                            color: '#00ff00'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            maxRotation: 0,
+                            minRotation: 0,
+                            font: {
+                                size: 9
+                            },
+                            color: 'white'
+                        },
+                        grid: {
+                            color: '#FFFFFF1A'
+                        },
+                        border: {
+                            color: '#d3d3d3'
+                        }
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutQuad'
+                }
+            }
+        });
+    }
+
+    // Função para adicionar legendas
+    function addLegend(chartId, rarity) {
+        const rarityColors = {
+            'nameless': 'rarity-nameless-legend',
+            'arcane': 'rarity-arcane-legend',
+            'legendary': 'rarity-legendary-legend',
+            'epic': 'rarity-epic-legend',
+            'rare': 'rarity-rare-legend',
+            'uncommon': 'rarity-uncommon-legend',
+        };
+        const rarityClass = rarityColors[rarity] || '';
+
+        const legendContainer = document.createElement('div');
+        legendContainer.className = 'legend-container';
+
+        const rarityLegend = document.createElement('div');
+        rarityLegend.className = `rarity-legend ${rarityClass}`;
+
+        const legendText = document.createElement('div');
+        legendText.className = 'legend-text';
+        legendText.textContent = rarity.charAt(0).toUpperCase() + rarity.slice(1);
+
+        legendContainer.appendChild(rarityLegend);
+        legendContainer.appendChild(legendText);
+
+        document.getElementById(chartId).parentNode.appendChild(legendContainer);
+    }
+
+    // Função para converter valores
+    function convertValue(value) {
+        return parseFloat(value.replace(/\./g, '').replace(',', '.'));
+    }
+
+    // Função para calcular a variação percentual
+    function calculatePercentageChange(data) {
+        let changes = [];
+        for (let i = 0; i < data.length; i++) {
+            if (i === 0) {
+                changes.push(null); // Sem variação para o primeiro valor
+            } else {
+                let change = ((data[i] - data[i - 1]) / data[i - 1]) * 100;
+                changes.push(change.toFixed(2));
+            }
+        }
+        return changes;
+    }
+
+    // Função para criar gráficos para os itens
+    function createCharts() {
+        const m9BayonetakumoValues = [
+               convertValue('3.550'),
+               convertValue('5.948'),
+               convertValue('6.875'),
+               convertValue('5.635')
+        ];
+        createChart('chart1', ['06/02/2022','20/01/2023', '01/01/2024', '08/07/2024'], m9BayonetakumoValues, 'Arcane');
+            
+      // Adicionar legendas
+        addLegend('chart1', 'arcane');
+    }
+
+    // Criar gráficos ao carregar a página
+    window.onload = createCharts;
+
+    // Função para filtrar itens
+    function filterItems() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const items = document.querySelectorAll('.item-container');
+        items.forEach(item => {
+            const title = item.querySelector('h2').textContent.toLowerCase();
+            if (title.includes(input)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    // Função para mostrar/ocultar opções de filtro
+    document.getElementById('filterButton').addEventListener('click', () => {
+        const filterOptions = document.getElementById('filterOptions');
+        filterOptions.style.display = filterOptions.style.display === 'none' || !filterOptions.style.display ? 'block' : 'none';
+    });
+     function redirecionarParaFragmentos() {
+    window.location.href = "https://soundtrack-season.vercel.app/Website%20Marketplace%20Fragment.HTML";
+    }
+</script>
+</body>
+</html>
