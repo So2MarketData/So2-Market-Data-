@@ -237,7 +237,7 @@
         <div class="collection-name">
     <img src="https://tinyurl.com/mr2h44ey" alt="Ícone da coleção" class="collection-icon">Nameless</div>
         <div class="item-image">
-            <img src="https://so2-market-data.vercel.app/So2_Awm_TreasureHunter.png" alt="Awm Treasure" width="100">
+            <img src="https://so2-market-data.vercel.app/So2_Awm_TreasureHunter.png" alt="img" width="100">
         </div>
         <div class="chart-container">
             <canvas id="chart1" width="400" height="200"></canvas>
@@ -276,7 +276,7 @@
         <div class="collection-name">
     <img src="https://tinyurl.com/mr2h44ey" alt="Ícone da coleção" class="collection-icon">Nameless</div>
         <div class="item-image">
-            <img src="https://so2-market-data.vercel.app/So2_KarambitGold.png" alt="karambit Gold" width="100">
+            <img src="https://so2-market-data.vercel.app/So2_KarambitGold.png" alt="img" width="100">
         </div>
         <div class="chart-container">
             <canvas id="chart2" width="400" height="200"></canvas>
@@ -315,7 +315,7 @@
         <div class="collection-name">
     <img src="https://tinyurl.com/mr2h44ey" alt="Ícone da coleção" class="collection-icon">Nameless</div>
         <div class="item-image">
-            <img src="https://so2-market-data.vercel.app/So2_Desert_Aureate.png" alt="karambit Gold" width="100">
+            <img src="https://so2-market-data.vercel.app/So2_Desert_Aureate.png" alt="Img" width="100">
         </div>
         <div class="chart-container">
             <canvas id="chart3" width="400" height="200"></canvas>
@@ -533,23 +533,30 @@
 
         // Criar gráficos ao carregar a página
         window.onload = createCharts;
-
+        
         // Função para filtrar itens
-        document.addEventListener('click', function(event) {
-    const filterButton = document.getElementById('filterButton');
-    const filterOptions = document.getElementById('filterOptions');
-    const isClickInside = filterButton.contains(event.target) || filterOptions.contains(event.target);
+ function filterItems() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const items = document.querySelectorAll('.item-container');
+            items.forEach(item => {
+                const title = item.querySelector('h2').textContent.toLowerCase();
+                if (title.includes(input)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
 
-    if (!isClickInside) {
-        filterOptions.style.display = 'none';
-    }
-});
-
-document.getElementById('filterButton').addEventListener('click', function() {
-    const filterOptions = document.getElementById('filterOptions');
-    filterOptions.style.display = filterOptions.style.display === 'block' ? 'none' : 'block';
-
+        // Função para mostrar/ocultar opções de filtro
+        document.getElementById('filterButton').addEventListener('click', () => {
+            const filterOptions = document.getElementById('filterOptions');
+            filterOptions.style.display = filterOptions.style.display === 'none' || !filterOptions.style.display ? 'block' : 'none';
         });
+        function redirectTo(category) {
+            var baseUrl = "url";
+            window.location.href = baseUrl + category;
+        }
         function redirecionarParaFragmentos() {
             window.location.href = "https://so2-market-data.vercel.app/Marketplace%20Fragment.html";
         }
