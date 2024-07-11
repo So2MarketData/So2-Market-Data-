@@ -235,13 +235,14 @@
     <div class="item-container" id="namelessFragment">
         <h2>AWM Treasure Hunter</h2>
         <div class="collection-name">
-    <img src="https://tinyurl.com/mr2h44ey" alt="Ícone da coleção" class="collection-icon">Nameless</div>
+    <img src="https://so2-market-data.vercel.app/So2_Nameless_Collection.png" alt="Ícone da coleção" class="collection-icon">Nameless</div>
         <div class="item-image">
             <img src="https://so2-market-data.vercel.app/So2_Awm_TreasureHunter.png" alt="img" width="100"oncontextmenu="return false">
         </div>
         <div class="chart-container">
             <canvas id="chart1" width="400" height="200"></canvas>
         </div>
+        
         <table class="unit-table">
             <thead>
                 <tr>
@@ -274,9 +275,9 @@
           <div class="item-container" id="namelessFragment">
         <h2>Karambit Gold</h2>
         <div class="collection-name">
-    <img src="https://tinyurl.com/mr2h44ey" alt="Ícone da coleção" class="collection-icon">Nameless</div>
+    <img src="https://so2-market-data.vercel.app/So2_Nameless_Collection.png" alt="Ícone da coleção" class="collection-icon">Nameless</div>
         <div class="item-image">
-            <img src="https://so2-market-data.vercel.app/So2_KarambitGold.png" alt="img" width="100">
+            <img src="https://so2-market-data.vercel.app/So2_KarambitGold.png" alt="img" width="100"oncontextmenu="return false">
         </div>
         <div class="chart-container">
             <canvas id="chart2" width="400" height="200"></canvas>
@@ -310,12 +311,12 @@
             </thead>
         </table>
     </div>
-         <div class="item-container" id="namelessFragment">
+         <div class="item-container" id="item3">
         <h2>Desert Eagle Aureate</h2>
         <div class="collection-name">
-    <img src="https://tinyurl.com/mr2h44ey" alt="Ícone da coleção" class="collection-icon">Nameless</div>
+    <img src="https://so2-market-data.vercel.app/So2_Nameless_Collection.png" alt="Ícone da coleção" class="collection-icon">Nameless</div>
         <div class="item-image">
-            <img src="https://so2-market-data.vercel.app/So2_Desert_Aureate.png" alt="Img" width="100">
+            <img src="https://so2-market-data.vercel.app/So2_Desert_Aureate.png" alt="Img" width="100"oncontextmenu="return false">
         </div>
         <div class="chart-container">
             <canvas id="chart3" width="400" height="200"></canvas>
@@ -500,7 +501,8 @@
         }
 
         // Função para criar gráficos para os itens
-        function createCharts() {
+        
+  function createCharts() {
         const awmtreasureValues = [
             convertValue('1'),
             convertValue('0'),
@@ -509,21 +511,21 @@
         ];
         createChart('chart1', ['00/00/2022', '00/00/2023', '00/00/2024', '00/00/2024'], awmtreasureValues, 'Nameless');
       
-        const karambitGoldValues = [
+        const item2Values = [
             convertValue('0'),
             convertValue('0'),
             convertValue('0'),
             convertValue('78.890')
         ];
-        createChart('chart2', ['00/00/2022', '00/00/2023', '00/00/2024', '11/07/2024'], karambitGoldValues, 'Nameless');
+        createChart('chart2', ['00/00/2022', '00/00/2023', '00/00/2024', '11/07/2024'], item2Values, 'Nameless');
           
-        const desertValues = [
+        const item3Values = [
             convertValue('0'),
             convertValue('0'),
             convertValue('0'),
             convertValue('0')
         ];
-        createChart('chart3', ['00/00/2022', '00/00/2023', '00/00/2024', '11/07/2024'], desertValues, 'Nameless');
+        createChart('chart3', ['00/00/2022', '00/00/2023', '00/00/2024', '11/07/2024'], item3Values, 'Nameless');
        
             // Adicionar legendas
             addLegend('chart1', 'nameless');
