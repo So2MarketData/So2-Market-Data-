@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marketplace Fragment</title>
+    <title>Marketplace Nameless</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -95,7 +95,6 @@
     width: 60px;
     height: 20px;
 }
-
         .item-container {
             margin-bottom: 40px;
             text-align: left;
@@ -111,11 +110,18 @@
         }
 
         .collection-name {
-            font-size: 12px;
-            font-weight: 300;
-            color: white;
-            margin-bottom: 10px;
-        }
+    font-size: 12px;
+    font-weight: 300;
+    color: white;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.collection-icon {
+    width: 20px; /* Ajuste o tamanho do ícone conforme necessário */
+    height: 20px;
+    margin-right: 5px;}
 
         .item-image {
             margin-bottom: -5px;
@@ -179,32 +185,6 @@
             background-color: #ffae42;
         }
 
-        .rarity-arcane-legend {
-            background-color: #ff0000;
-        }
-
-        .rarity-legendary-legend {
-            background-color: #800080;
-        }
-
-        .rarity-epic-legend {
-            background-color: #5b0a8c;
-        }
-
-        .rarity-rare-legend {
-            background-color: #00008b;
-            border: 1px solid #7c9bce;
-        }
-
-        .rarity-uncommon-legend {
-            background-color: #71aada;
-        }
-
-        .rarity-Comum {
-            background-color: gray;
-            /* Cor de fundo para Fragmento Ultra */
-        }
-
         .legend-text {
             color: white;
             font-size: 12px;
@@ -219,7 +199,7 @@
     </div>
 
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Buscar Fragmento..." onkeyup="filterItems()">
+        <input type="text" id="searchInput" placeholder="Buscar Nameless..." onkeyup="filterItems()">
     </div>
 
     <div class="filter-container">
@@ -229,13 +209,13 @@
                 <img src="url" alt="Ícone 1" class="filter-icon">
                 <span>Todos</span>
             </div>
+            <div class="filter-option" onclick="redirecionarParaFragmentos()">
+                <img src="https://so2-market-data.vercel.app/So2_fragment_icon.png" alt="Ícone 2" class="filter-icon">
+                <span>Fragmentos</span>
+            </div>
             <div class="filter-option" onclick="redirecionarParaFacas()">
                 <img src="https://so2-market-data.vercel.app/M9_Bayonet_Icon.png" alt="Ícone 2" class="filter-icon filter-icon-retangular">
                 <span>Facas</span>
-            </div>
-            <div class="filter-option">
-                <img src="https://via.placeholder.com/20x20?text=3" alt="Ícone 3" class="filter-icon">
-                <span></span>
             </div>
             <div class="filter-option">
                 <img src="https://via.placeholder.com/20x20?text=4" alt="Ícone 4" class="filter-icon">
@@ -245,18 +225,19 @@
                 <img src="https://via.placeholder.com/20x20?text=5" alt="Ícone 5" class="filter-icon">
                 <span></span>
             </div>
-            <div class="filter-option"onclick="redirecionarParaNameless()">
+            <div class="filter-option">
                 <img src="https://so2-market-data.vercel.app/So2_Nameless_Icon.png" alt="Ícone 6" class="filter-icon">
                 <span>Nameless</span>
             </div>
         </div>
     </div>
+
     <div class="item-container" id="namelessFragment">
-        <h2>Nameless Fragment</h2>
-        <div class="collection-name">SO2 Collection</div>
+        <h2>AWM Treasure Hunter</h2>
+        <div class="collection-name">
+    <img src="https://tinyurl.com/mr2h44ey" alt="Ícone da coleção" class="collection-icon">Nameless</div>
         <div class="item-image">
-            <img src="https://soundtrack-season.vercel.app/Web_Nameless_Fragment.png" alt="Nameless Fragment"
-                width="100">
+            <img src="https://so2-market-data.vercel.app/So2_Awm_TreasureHunter.png" alt="img" width="100">
         </div>
         <div class="chart-container">
             <canvas id="chart1" width="400" height="200"></canvas>
@@ -265,37 +246,37 @@
             <thead>
                 <tr>
                     <th class="value">Valor</th>
-                    <th class="value value-cell">49.000</th>
-                    <th class="value value-cell">11.799,99</th>
+                    <th class="value value-cell">0</th>
                     <th class="value value-cell"></th>
-                    <th class="value value-cell"></th>
-                    <th class="value value-cell"></th>
+                    <th class="value value-cell">0</th>
+                    <th class="value value-cell">0</th>
+                    <th class="value value-cell">0</th>
                 </tr>
                 <tr>
                     <th class="units">Unidades</th>
-                    <td class="units-cell">4</td>
-                    <td class="units-cell">45</td>
+                    <td class="units-cell">0</td>
                     <td class="units-cell"></td>
-                    <td class="units-cell"></td>
-                    <td class="units-cell"></td>
+                    <td class="units-cell">0</td>
+                    <td class="units-cell">0</td>
+                    <td class="units-cell">0</td>
                 </tr>
                 <tr>
                     <th class="date">Data</th>
-                    <td class="date-cell">23/06/2024</td>
-                    <td class="date-cell">05/07/2024</td>
+                    <td class="date-cell">0</td>
                     <td class="date-cell"></td>
-                    <td class="date-cell"></td>
-                    <td class="date-cell"></td>
+                    <td class="date-cell">0</td>
+                    <td class="date-cell">0</td>
+                    <td class="date-cell">0</td>
                 </tr>
             </thead>
         </table>
     </div>
-
-    <div class="item-container" id="arcaneFragment">
-        <h2>Arcane Fragment</h2>
-        <div class="collection-name">SO2 Collection</div>
+          <div class="item-container" id="namelessFragment">
+        <h2>Karambit Gold</h2>
+        <div class="collection-name">
+    <img src="https://tinyurl.com/mr2h44ey" alt="Ícone da coleção" class="collection-icon">Nameless</div>
         <div class="item-image">
-            <img src="https://soundtrack-season.vercel.app/Web_Arcane_Fragment.jpg" alt="Arcane Fragment" width="100">
+            <img src="https://so2-market-data.vercel.app/So2_KarambitGold.png" alt="img" width="100">
         </div>
         <div class="chart-container">
             <canvas id="chart2" width="400" height="200"></canvas>
@@ -304,38 +285,37 @@
             <thead>
                 <tr>
                     <th class="value">Valor</th>
-                    <th class="value value-cell">1.000</th>
-                    <th class="value value-cell">162</th>
+                    <th class="value value-cell">0</th>
                     <th class="value value-cell"></th>
-                    <th class="value value-cell"></th>
-                    <th class="value value-cell"></th>
+                    <th class="value value-cell">0</th>
+                    <th class="value value-cell">0</th>
+                    <th class="value value-cell">78.890</th>
                 </tr>
                 <tr>
                     <th class="units">Unidades</th>
-                    <td class="units-cell">42</td>
-                    <td class="units-cell">2.857</td>
+                    <td class="units-cell">0</td>
                     <td class="units-cell"></td>
-                    <td class="units-cell"></td>
-                    <td class="units-cell"></td>
+                    <td class="units-cell">0</td>
+                    <td class="units-cell">0</td>
+                    <td class="units-cell">20</td>
                 </tr>
                 <tr>
                     <th class="date">Data</th>
-                    <td class="date-cell">23/06/2024</td>
-                    <td class="date-cell">05/06/2024</td>
+                    <td class="date-cell">0</td>
                     <td class="date-cell"></td>
-                    <td class="date-cell"></td>
-                    <td class="date-cell"></td>
+                    <td class="date-cell">0</td>
+                    <td class="date-cell">0</td>
+                    <td class="date-cell">11/07/2024</td>
                 </tr>
             </thead>
         </table>
     </div>
-
-    <div class="item-container" id="legendaryFragment">
-        <h2>Legendary Fragment</h2>
-        <div class="collection-name">SO2 Collection</div>
+         <div class="item-container" id="namelessFragment">
+        <h2>Desert Eagle Aureate</h2>
+        <div class="collection-name">
+    <img src="https://tinyurl.com/mr2h44ey" alt="Ícone da coleção" class="collection-icon">Nameless</div>
         <div class="item-image">
-            <img src="https://soundtrack-season.vercel.app/Web_Legendary_Fragment.jpg" alt="Legendary Fragment"
-                width="100">
+            <img src="https://so2-market-data.vercel.app/So2_Desert_Aureate.png" alt="Img" width="100">
         </div>
         <div class="chart-container">
             <canvas id="chart3" width="400" height="200"></canvas>
@@ -344,146 +324,33 @@
             <thead>
                 <tr>
                     <th class="value">Valor</th>
-                    <th class="value value-cell">10.000</th>
-                    <th class="value value-cell">5.000</th>
+                    <th class="value value-cell">0</th>
                     <th class="value value-cell"></th>
-                    <th class="value value-cell"></th>
-                    <th class="value value-cell"></th>
+                    <th class="value value-cell">0</th>
+                    <th class="value value-cell">0</th>
+                    <th class="value value-cell">0</th>
                 </tr>
                 <tr>
                     <th class="units">Unidades</th>
-                    <td class="units-cell">132</td>
-                    <td class="units-cell">5008</td>
+                    <td class="units-cell">0</td>
                     <td class="units-cell"></td>
-                    <td class="units-cell"></td>
-                    <td class="units-cell"></td>
+                    <td class="units-cell">0</td>
+                    <td class="units-cell">0</td>
+                    <td class="units-cell">0</td>
                 </tr>
                 <tr>
                     <th class="date">Data</th>
-                    <td class="date-cell">23/06/2024</td>
-                    <td class="date-cell">05/07/2024</td>
+                    <td class="date-cell">0</td>
                     <td class="date-cell"></td>
-                    <td class="date-cell"></td>
-                    <td class="date-cell"></td>
+                    <td class="date-cell">0</td>
+                    <td class="date-cell">0</td>
+                    <td class="date-cell">11/07/2024</td>
                 </tr>
             </thead>
         </table>
     </div>
-    <div class="item-container" id="epicFragment">
-        <h2>Epic Fragment</h2>
-        <div class="collection-name">SO2 Collection</div>
-        <div class="item-image">
-            <img src="https://soundtrack-season.vercel.app/Web_Epic_Fragment.jpg" alt="Epic Fragment" width="100">
-        </div>
-        <div class="chart-container">
-            <canvas id="chart4" width="400" height="200"></canvas>
-        </div>
-        <table class="unit-table">
-            <thead>
-                <tr>
-                    <th class="value">Valor</th>
-                    <th class="value value-cell">15.60</th>
-                    <th class="value value-cell">2.50</th>
-                    <th class="value value-cell"></th>
-                    <th class="value value-cell"></th>
-                    <th class="value value-cell"></th>
-                </tr>
-                <tr>
-                    <th class="units">Unidades</th>
-                    <td class="units-cell">512</td>
-                    <td class="units-cell">38.485</td>
-                    <td class="units-cell"></td>
-                    <td class="units-cell"></td>
-                    <td class="units-cell"></td>
-                </tr>
-                <tr>
-                    <th class="date">Data</th>
-                    <td class="date-cell">23/06/2024</td>
-                    <td class="date-cell">05/07/2024</td>
-                    <td class="date-cell"></td>
-                    <td class="date-cell"></td>
-                    <td class="date-cell"></td>
-                </tr>
-            </thead>
-        </table>
-    </div>
-    <div class="item-container" id="rareFragment">
-        <h2>Rare Fragment</h2>
-        <div class="collection-name">SO2 Collection</div>
-        <div class="item-image">
-            <img src="https://soundtrack-season.vercel.app/Web_Rare_Fragment.png" alt="Rare Fragment" width="100">
-        </div>
-        <div class="chart-container">
-            <canvas id="chart5" width="400" height="200"></canvas>
-        </div>
-        <table class="unit-table">
-            <thead>
-                <tr>
-                    <th class="value">Valor</th>
-                    <th class="value value-cell">5.50</th>
-                    <th class="value value-cell">0.55</th>
-                    <th class="value value-cell"></th>
-                    <th class="value value-cell"></th>
-                    <th class="value value-cell"></th>
-                </tr>
-                <tr>
-                    <th class="units">Unidades</th>
-                    <td class="units-cell">1050</td>
-                    <td class="units-cell">110.335</td>
-                    <td class="units-cell"></td>
-                    <td class="units-cell"></td>
-                    <td class="units-cell"></td>
-                </tr>
-                <tr>
-                    <th class="date">Data</th>
-                    <td class="date-cell">23/06/2024</td>
-                    <td class="date-cell">05/07/2024</td>
-                    <td class="date-cell"></td>
-                    <td class="date-cell"></td>
-                    <td class="date-cell"></td>
-                </tr>
-            </thead>
-        </table>
-    </div>
-    <div class="item-container" id="namelessFragment">
-        <h2>Umcommom Fragment</h2>
-        <div class="collection-name">SO2 Collection</div>
-        <div class="item-image">
-            <img src="https://soundtrack-season.vercel.app/Web_Uncommom_Fragment.png" alt="uncommom Fragment"
-                width="100">
-        </div>
-        <div class="chart-container">
-            <canvas id="chart6" width="400" height="200"></canvas>
-        </div>
-        <table class="unit-table">
-            <thead>
-                <tr>
-                    <th class="value">Valor</th>
-                    <th class="value value-cell">1.90</th>
-                    <th class="value value-cell">0.14</th>
-                    <th class="value value-cell"></th>
-                    <th class="value value-cell"></th>
-                    <th class="value value-cell"></th>
-                </tr>
-                <tr>
-                    <th class="units">Unidades</th>
-                    <td class="units-cell">7.214</td>
-                    <td class="units-cell">987.157</td>
-                    <td class="units-cell"></td>
-                    <td class="units-cell"></td>
-                    <td class="units-cell"></td>
-                </tr>
-                <tr>
-                    <th class="date">Data</th>
-                    <td class="date-cell">23/06/2024</td>
-                    <td class="date-cell">05/07/2024</td>
-                    <td class="date-cell"></td>
-                    <td class="date-cell"></td>
-                    <td class="date-cell"></td>
-                </tr>
-            </thead>
-        </table>
-    </div>
+
+
     <script>
         // Função para criar gráficos
         function createChart(chartId, labels, data, rarity) {
@@ -593,11 +460,7 @@
         function addLegend(chartId, rarity) {
             const rarityColors = {
                 'nameless': 'rarity-nameless-legend',
-                'arcane': 'rarity-arcane-legend',
-                'legendary': 'rarity-legendary-legend',
-                'epic': 'rarity-epic-legend',
-                'rare': 'rarity-rare-legend',
-                'uncommon': 'rarity-uncommon-legend',
+                
             };
             const rarityClass = rarityColors[rarity] || '';
 
@@ -638,59 +501,41 @@
 
         // Função para criar gráficos para os itens
         function createCharts() {
-            const namelessValues = [
-                convertValue('49.000,99'),
-                convertValue('11.799,99')
-            ];
-            createChart('chart1', ['23/06/2024', '05/07/2024'], namelessValues, 'nameless');
-
-            const arcaneValues = [
-                convertValue('1000'),
-                convertValue('162')
-            ];
-            createChart('chart2', ['23/06/2024', '05/07/2024'], arcaneValues, 'arcane');
-
-            const legendaryValues = [
-                convertValue('100'),
-                convertValue('17,85')
-            ];
-            createChart('chart3', ['22/06/2024', '05/07/2024'], legendaryValues, 'legendary');
-
-            const epicValues = [
-                convertValue('15,60'),
-                convertValue('2,50')
-            ];
-            createChart('chart4', ['23/06/2024', '05/07/2024'], epicValues, 'epic');
-
-            const rareValues = [
-                convertValue('5,50'),
-                convertValue('0,55')
-            ];
-            createChart('chart5', ['23/06/2024', '05/07/2024'], rareValues, 'rare');
-
-            const uncommonValues = [
-                convertValue('1,90'),
-                convertValue('0,14')
-            ];
-            createChart('chart6', ['23/06/2024', '08/07/2024'], uncommonValues, 'uncommon');
-
-
-
+        const awmtreasureValues = [
+            convertValue('1'),
+            convertValue('0'),
+            convertValue('0'),
+            convertValue('0')
+        ];
+        createChart('chart1', ['00/00/2022', '00/00/2023', '00/00/2024', '00/00/2024'], awmtreasureValues, 'Nameless');
+      
+        const karambitGoldValues = [
+            convertValue('0'),
+            convertValue('0'),
+            convertValue('0'),
+            convertValue('78.890')
+        ];
+        createChart('chart2', ['00/00/2022', '00/00/2023', '00/00/2024', '11/07/2024'], karambitGoldValues, 'Nameless');
+          
+        const desertValues = [
+            convertValue('0'),
+            convertValue('0'),
+            convertValue('0'),
+            convertValue('0')
+        ];
+        createChart('chart3', ['00/00/2022', '00/00/2023', '00/00/2024', '11/07/2024'], desertValues, 'Nameless');
+       
             // Adicionar legendas
             addLegend('chart1', 'nameless');
-            addLegend('chart2', 'arcane');
-            addLegend('chart3', 'legendary');
-            addLegend('chart4', 'epic');
-            addLegend('chart5', 'rare');
-            addLegend('chart6', 'uncommon');
-
+            addLegend('chart2', 'nameless');
+            addLegend('chart3', 'nameless');
         }
 
         // Criar gráficos ao carregar a página
         window.onload = createCharts;
-
+        
         // Função para filtrar itens
-        function filterItems() {
+ function filterItems() {
             const input = document.getElementById('searchInput').value.toLowerCase();
             const items = document.querySelectorAll('.item-container');
             items.forEach(item => {
@@ -712,14 +557,14 @@
             var baseUrl = "url";
             window.location.href = baseUrl + category;
         }
-        function redirecionarParaFacas() {
-            window.location.href = "https://so2-market-data.vercel.app/Marketplace%20Facas.html";
+        function redirecionarParaFragmentos() {
+            window.location.href = "https://so2-market-data.vercel.app/Marketplace%20Fragment.html";
         }
         function redirecionarParaTodos() {
             window.location.href = "https://so2-market-data.vercel.app/Website%20Marketplace.HTML";
         }
-        function redirecionarParaNameless() {
-            window.location.href = "https://so2-market-data.vercel.app/Marketplace%20Nameless.Html";
+        function redirecionarParaFacas() {
+            window.location.href = "https://so2-market-data.vercel.app/Marketplace%20Facas.html";
         }
     </script>
 </body>
