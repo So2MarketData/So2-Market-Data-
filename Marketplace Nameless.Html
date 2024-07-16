@@ -408,24 +408,33 @@
                 <tr>
                     <th class="value">Valor</th>
                     <th class="value value-cell">333.333 G</th>
+                    <th class="value value-cell">99.999 G</th>
+                    <th class="value value-cell">55.555 G</th>
+                    <th class="value value-cell">38.900 G</th>
                     <th class="value value-cell">25.400 G</th>
-                    <th class="value value-cell">0</th>
+                    <th class="value value-cell">24.997</th>
                     <th class="value value-cell">0</th>
                     <th class="value value-cell">16.500 G</th>
                 </tr>
                 <tr>
                     <th class="units">Unidades</th>
                     <td class="units-cell">2</td>
+                    <td class="units-cell">3</td>
+                    <td class="units-cell">7</td>
+                    <td class="units-cell">5</td>
                     <td class="units-cell">12</td>
-                    <td class="units-cell">0</td>
+                    <td class="units-cell">11</td>
                     <td class="units-cell">0</td>
                     <td class="units-cell">11</td>
                 </tr>
                 <tr>
                     <th class="date">Data</th>
                     <td class="date-cell">11/05/2020</td>
+                    <td class="date-cell">17/06/2020</td>
+                    <td class="date-cell">23/12/2020</td>
+                    <td class="date-cell">17/10/2021</td>
                     <td class="date-cell">29/11/2021</td>
-                    <td class="date-cell">0</td>
+                    <td class="date-cell">06/02/2022</td>
                     <td class="date-cell">0</td>
                     <td class="date-cell">11/07/2024</td>
                 </tr>
@@ -868,11 +877,14 @@
 
             const item4Values = [
                 convertValue('333.333'),
+                convertValue('99.999'),
+                convertValue('55.555'),
+                convertValue('38.900'),
                 convertValue('25.400'),
-                convertValue('0'),
+                convertValue('25.997'),
                 convertValue('16.500')
             ];
-            createChart('chart4', ['11/05/2020', '29/11/2021', '00/00/2024', '11/07/2024'], item4Values, 'Nameless');
+            createChart('chart4', ['11/05/2020','17/06/2020','23/12/2020','17/10/2021', '29/11/2021', '06/02/2022', '11/07/2024'], item4Values, 'Nameless');
 
             const item5Values = [
                 convertValue('0'),
