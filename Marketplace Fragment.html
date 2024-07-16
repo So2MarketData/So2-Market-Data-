@@ -279,7 +279,7 @@
         <div class="collection-name">
     <img src="https://so2-market-data.vercel.app/So2_Collection.png" alt="Ícone da coleção" class="collection-icon">SO2 Collection</div>
         <div class="item-image">
-            <img src="https://soundtrack-season.vercel.app/Web_Nameless_Fragment.png" alt="Nameless Fragment"width="100" oncontextmenu="return false">
+            <img src="https://soundtrack-season.vercel.app/Web_Nameless_Fragment.png" alt="Nameless Fragment"width="100" oncontextmenu="return false" loading="lazy">
         </div>
         <div class="chart-container">
             <canvas id="chart1" width="400" height="200"></canvas>
@@ -319,7 +319,7 @@
         <div class="collection-name">
     <img src="https://so2-market-data.vercel.app/So2_Collection.png" alt="Ícone da coleção" class="collection-icon">SO2 Collection</div>
         <div class="item-image">
-            <img src="https://soundtrack-season.vercel.app/Web_Arcane_Fragment.jpg" alt="Arcane Fragment" width="100" oncontextmenu="return false">
+            <img src="https://soundtrack-season.vercel.app/Web_Arcane_Fragment.jpg" alt="Arcane Fragment" width="100" oncontextmenu="return false" loading="lazy">
         </div>
         <div class="chart-container">
             <canvas id="chart2" width="400" height="200"></canvas>
@@ -359,7 +359,7 @@
         <div class="collection-name">
     <img src="https://so2-market-data.vercel.app/So2_Collection.png" alt="Ícone da coleção" class="collection-icon">SO2 Collection</div>
         <div class="item-image">
-            <img src="https://soundtrack-season.vercel.app/Web_Legendary_Fragment.jpg" alt="Legendary Fragment"width="100" oncontextmenu="return false">
+            <img src="https://soundtrack-season.vercel.app/Web_Legendary_Fragment.jpg" alt="Legendary Fragment"width="100" oncontextmenu="return false" loading="lazy">
         </div>
         <div class="chart-container">
             <canvas id="chart3" width="400" height="200"></canvas>
@@ -398,7 +398,7 @@
         <div class="collection-name">
     <img src="https://so2-market-data.vercel.app/So2_Collection.png" alt="Ícone da coleção" class="collection-icon">SO2 Collection</div>
         <div class="item-image">
-            <img src="https://soundtrack-season.vercel.app/Web_Epic_Fragment.jpg" alt="Epic Fragment" width="100" oncontextmenu="return false">
+            <img src="https://soundtrack-season.vercel.app/Web_Epic_Fragment.jpg" alt="Epic Fragment" width="100" oncontextmenu="return false" loading="lazy">
         </div>
         <div class="chart-container">
             <canvas id="chart4" width="400" height="200"></canvas>
@@ -437,7 +437,7 @@
         <div class="collection-name">
     <img src="https://so2-market-data.vercel.app/So2_Collection.png" alt="Ícone da coleção" class="collection-icon">SO2 Collection</div>
         <div class="item-image">
-            <img src="https://soundtrack-season.vercel.app/Web_Rare_Fragment.png" alt="Rare Fragment" width="100" oncontextmenu="return false">
+            <img src="https://soundtrack-season.vercel.app/Web_Rare_Fragment.png" alt="Rare Fragment" width="100" oncontextmenu="return false" loading="lazy">
         </div>
         <div class="chart-container">
             <canvas id="chart5" width="400" height="200"></canvas>
@@ -476,7 +476,7 @@
         <div class="collection-name">
     <img src="https://so2-market-data.vercel.app/So2_Collection.png" alt="Ícone da coleção" class="collection-icon">SO2 Collection</div>
         <div class="item-image">
-            <img src="https://soundtrack-season.vercel.app/Web_Uncommom_Fragment.png" alt="uncommom Fragment"width="100" oncontextmenu="return false">
+            <img src="https://soundtrack-season.vercel.app/Web_Uncommom_Fragment.png" alt="uncommom Fragment"width="100" oncontextmenu="return false" loading="lazy">
         </div>
         <div class="chart-container">
             <canvas id="chart6" width="400" height="200"></canvas>
@@ -750,6 +750,39 @@
         function redirecionarParaNameless() {
             window.location.href = "https://so2-market-data.vercel.app/Marketplace%20Nameless.Html";
         }
+        
+        //otimizar grafico
+  
+        document.addEventListener("DOMContentLoaded", function () {
+    const lazyGraphs = [].slice.call(document.querySelectorAll(".lazy-graph"));
+
+    if ("IntersectionObserver" in window) {
+        const lazyGraphObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const graphContainer = entry.target;
+                    const src = graphContainer.getAttribute("data-src");
+                    graphContainer.querySelector("img").src = src;
+                    observer.unobserve(graphContainer);
+                }
+            });
+        });
+
+        lazyGraphs.forEach(graph => {
+            lazyGraphObserver.observe(graph);
+        });
+    } else {
+
+        lazyGraphs.forEach(graph => {
+            const src = graph.getAttribute("data-src");
+        });
+    }
+});
+function renderChart() {
+    requestAnimationFrame(() => {
+        // Código para renderizar o gráfico
+    });
+}
     </script>
 </body>
 </html>
