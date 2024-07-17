@@ -239,7 +239,7 @@
                <span>Nameless</span>
             </div>
          </div>
-      </div>  
+      </div>
       <div class="item-container" id="arcaneFragment">
          <h2>M9 Bayonet Dragon Glass</h2>
          <div class="collection-name">
@@ -359,8 +359,8 @@
                </tr>
             </thead>
          </table>
-      </div>     
-     <div class="item-container" id="arcaneFragment">
+      </div>
+      <div class="item-container" id="arcaneFragment">
          <h2>M9 Bayonet Scratch</h2>
          <div class="collection-name">
             <img src="https://so2-market-data.vercel.app/So2_Origin_Icon.png" alt="Ícone da coleção" class="collection-icon">Origin Collection
@@ -440,8 +440,6 @@
             </thead>
          </table>
       </div>
-      
-      
       <div class="item-container" id="arcaneFragment">
          <h2>M9 Bayonet Frozen</h2>
          <div class="collection-name">
@@ -522,7 +520,7 @@
             </thead>
          </table>
       </div>
-     <div class="item-container" id="arcaneFragment">
+      <div class="item-container" id="arcaneFragment">
          <h2>M9 Bayonet Digital Burst</h2>
          <div class="collection-name">
             <img src="https://so2-market-data.vercel.app/So2_Hot_Winter_Party.png" alt="Ícone da coleção" class="collection-icon">Hot Winter Party 2023
@@ -562,7 +560,7 @@
             </thead>
          </table>
       </div>
-     <div class="item-container" id="arcaneFragment">
+      <div class="item-container" id="arcaneFragment">
          <h2>M9 Bayonet Dark Shiver</h2>
          <div class="collection-name">
             <img src="https://so2-market-data.vercel.app/So2_Frost_Chaos_Collection.png" alt="Ícone da coleção" class="collection-icon">Frost Chaos Collection
@@ -968,6 +966,15 @@
              const filterOptions = document.getElementById('filterOptions');
              filterOptions.style.display = filterOptions.style.display === 'none' || !filterOptions.style.display ? 'block' : 'none';
          });
+         // ocultar filtro click de fora
+         document.addEventListener('click', function(event) {
+         const filterButton = document.getElementById('filterButton');
+         const filterOptions = document.getElementById('filterOptions');
+         
+         if (!filterButton.contains(event.target) && !filterOptions.contains(event.target)) {
+         filterOptions.style.display = 'none';
+         }
+         });
          function redirecionarParaFragmentos() {
              window.location.href = "https://so2-market-data.vercel.app/Marketplace%20Fragment.html";
          }
@@ -978,14 +985,14 @@
          function redirecionarParaNameless() {
              window.location.href = "https://so2-market-data.vercel.app/Marketplace%20Nameless.Html";
          }
-     
+         
          //otimizar grafico
-     
+         
          document.addEventListener("DOMContentLoaded", function () {
-    const lazyGraphs = [].slice.call(document.querySelectorAll(".lazy-graph"));
-
-    if ("IntersectionObserver" in window) {
-        const lazyGraphObserver = new IntersectionObserver((entries, observer) => {
+         const lazyGraphs = [].slice.call(document.querySelectorAll(".lazy-graph"));
+         
+         if ("IntersectionObserver" in window) {
+         const lazyGraphObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const graphContainer = entry.target;
@@ -994,23 +1001,23 @@
                     observer.unobserve(graphContainer);
                 }
             });
-        });
-
-        lazyGraphs.forEach(graph => {
+         });
+         
+         lazyGraphs.forEach(graph => {
             lazyGraphObserver.observe(graph);
-        });
-    } else {
-
-        lazyGraphs.forEach(graph => {
+         });
+         } else {
+         
+         lazyGraphs.forEach(graph => {
             const src = graph.getAttribute("data-src");
-        });
-    }
-});
-function renderChart() {
-    requestAnimationFrame(() => {
-        // Código para renderizar o gráfico
-    });
-}
+         });
+         }
+         });
+         function renderChart() {
+         requestAnimationFrame(() => {
+         // Código para renderizar o gráfico
+         });
+         }
       </script>
    </body>
 </html>
