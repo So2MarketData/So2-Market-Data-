@@ -1,1025 +1,987 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marketplace Nameless</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('https://soundtrack-season.vercel.app/Web_Background.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
-        }
-
-        .logo-container {
-            display: flex;
-            justify-content: left;
-            align-items: center;
-
-        }
-
-        .logo-container img {
-            max-width: 300px;
-            height: auto;
-            margin-bottom: -5px;
-
-
-        }
-
-        .search-container {
-            margin-bottom: 5px;
-            text-align: left;
-        }
-
-        #searchInput {
-            width: 250px;
-            padding: 10px;
-            font-size: 12px;
-            border: 3px solid #7c9bce;
-            border-radius: 4px;
-            background-color: #1c1c1c;
-            color: white;
-        }
-
-        .filter-container {
-            margin-top: 0px;
-            text-align: left;
-        }
-
-        #filterButton {
-            background-color: #7c9bce;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            width: 60%;
-            max-width: 200px;
-
-        }
-
-        #filterOptions {
-            display: none;
-            margin-top: 10px;
-            background-color: #1c1c1c;
-            border: 2px solid #7c9bce;
-            border-radius: 5px;
-            padding: 10px;
-            position: absolute;
-            width: 60%;
-        }
-
-        .filter-option {
-            display: flex;
-            align-items: center;
-            padding: 8px;
-            cursor: pointer;
-        }
-
-        .filter-option:hover {
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-
-        .filter-icon {
-            margin-right: 10px;
-            width: 20px;
-            height: 20px;
-        }
-
-        .filter-icon-retangular {
-            width: 50px;
-            height: 17px;
-        }
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Marketplace Nameless</title>
+      <style>
+         body {
+         font-family: Arial, sans-serif;
+         background-image: url('https://soundtrack-season.vercel.app/Web_Background.png');
+         background-size: cover;
+         background-position: center;
+         background-attachment: fixed;
+         color: white;
+         }
+         .logo-container {
+         display: flex;
+         justify-content: left;
+         align-items: center;
+         }
+         .logo-container img {
+         max-width: 300px;
+         height: auto;
+         margin-bottom: -5px;
+         }
+         .search-container {
+         margin-bottom: 5px;
+         text-align: left;
+         }
+         #searchInput {
+         width: 250px;
+         padding: 10px;
+         font-size: 12px;
+         border: 3px solid #7c9bce;
+         border-radius: 4px;
+         background-color: #1c1c1c;
+         color: white;
+         }
+         .filter-container {
+         margin-top: 0px;
+         text-align: left;
+         }
+         #filterButton {
+         background-color: #7c9bce;
+         color: white;
+         padding: 10px;
+         border: none;
+         border-radius: 4px;
+         cursor: pointer;
+         font-size: 14px;
+         font-weight: bold;
+         margin-bottom: 20px;
+         width: 60%;
+         max-width: 200px;
+         }
+         #filterOptions {
+         display: none;
+         margin-top: 10px;
+         background-color: #1c1c1c;
+         border: 2px solid #7c9bce;
+         border-radius: 5px;
+         padding: 10px;
+         position: absolute;
+         width: 60%;
+         }
+         .filter-option {
+         display: flex;
+         align-items: center;
+         padding: 8px;
+         cursor: pointer;
+         }
+         .filter-option:hover {
+         background-color: rgba(0, 0, 0, 0.4);
+         }
+         .filter-icon {
+         margin-right: 10px;
+         width: 20px;
+         height: 20px;
+         }
+         .filter-icon-retangular {
+         width: 50px;
+         height: 17px;
+         }
          .filter-icon-case {
-    width: 33px;
-    height: 30px;
-}
-
-        .item-container {
-            margin-bottom: 40px;
-            text-align: left;
-            background-color: rgba(0, 0, 0, 0.4);
-            padding: 20px;
-            border-radius: 10px;
-            display: inline-block;
-            min-width: 300px;
-        }
-
-        .item-container h2 {
-            margin-bottom: 10px;
-        }
-
-        .collection-name {
-            font-size: 12px;
-            font-weight: 300;
-            color: white;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .collection-icon {
-            width: 20px;
-            /* Ajuste o tamanho do ícone conforme necessário */
-            height: 20px;
-            margin-right: 5px;
-        }
-
-        .item-image {
-            margin-bottom: -5px;
-        }
-
-        .unit-table {
-            width: 100%;
-            border: 2px solid #7c9bce;
-            border-collapse: collapse;
-        }
-
-        .unit-table th,
-        .unit-table td {
-            border: transparent;
-            padding: 3px;
-            text-align: center;
-            font-size: 8px;
-        }
-
-        .unit-table th {
-            color: white;
-        }
-
-        .unit-table th.value,
-        .unit-table th.units,
-        .unit-table th.date {
-            background-color: #1c1c1c;
-        }
-
-        .unit-table td.value-cell,
-        .unit-table td.units-cell,
-        .unit-table td.date-cell {
-            background-color: #1c1c1c;
-            color: white;
-        }
-
-        .chart-container {
-            background-color: #1c1c1c;
-            padding: 10px;
-            border: 2px solid #7c9bce;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 20px;
-            margin-bottom: 15px;
-        }
-
-        .legend-container {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-        }
-
-        .rarity-legend {
-            width: 20px;
-            height: 10px;
-            margin-right: 10px;
-            border: 1px solid #fff;
-        }
-
-        .rarity-nameless-legend {
-            background-color: #ffae42;
-        }
-
-        .legend-text {
-            color: white;
-            font-size: 12px;
-        }
+         width: 33px;
+         height: 30px;
+         }
+         .item-container {
+         margin-bottom: 40px;
+         text-align: left;
+         background-color: rgba(0, 0, 0, 0.4);
+         padding: 20px;
+         border-radius: 10px;
+         display: inline-block;
+         min-width: 300px;
+         }
+         .item-container h2 {
+         margin-bottom: 10px;
+         }
+         .collection-name {
+         font-size: 12px;
+         font-weight: 300;
+         color: white;
+         margin-bottom: 10px;
+         display: flex;
+         align-items: center;
+         }
+         .collection-icon {
+         width: 20px;
+         /* Ajuste o tamanho do ícone conforme necessário */
+         height: 20px;
+         margin-right: 5px;
+         }
+         .item-image {
+         margin-bottom: -5px;
+         }
+         .unit-table {
+         width: 100%;
+         border: 2px solid #7c9bce;
+         border-collapse: collapse;
+         }
+         .unit-table th,
+         .unit-table td {
+         border: transparent;
+         padding: 3px;
+         text-align: center;
+         font-size: 8px;
+         }
+         .unit-table th {
+         color: white;
+         }
+         .unit-table th.value,
+         .unit-table th.units,
+         .unit-table th.date {
+         background-color: #1c1c1c;
+         }
+         .unit-table td.value-cell,
+         .unit-table td.units-cell,
+         .unit-table td.date-cell {
+         background-color: #1c1c1c;
+         color: white;
+         }
+         .chart-container {
+         background-color: #1c1c1c;
+         padding: 10px;
+         border: 2px solid #7c9bce;
+         border-radius: 5px;
+         display: inline-block;
+         margin-top: 20px;
+         margin-bottom: 15px;
+         }
+         .legend-container {
+         display: flex;
+         align-items: center;
+         margin-top: 10px;
+         }
+         .rarity-legend {
+         width: 20px;
+         height: 10px;
+         margin-right: 10px;
+         border: 1px solid #fff;
+         }
+         .rarity-nameless-legend {
+         background-color: #ffae42;
+         }
+         .legend-text {
+         color: white;
+         font-size: 12px;
+         }
          .footer {
-    background-color: rgba(0, 0, 0, 0.3);
-    color: #fff;
-    text-align: center;
-    padding: 1px 0;
-    width: 100%;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin-top: auto;
-}
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-
-<body>
-    <div class="logo-container">
-        <img src="https://soundtrack-season.vercel.app/Web_Logo_Market.png" alt="Logo do Meu Site">
-    </div>
-
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Buscar Nameless..." onkeyup="filterItems()">
-    </div>
-
-    <div class="filter-container">
-        <button id="filterButton">Filtro</button>
-        <div id="filterOptions" class="filter-options">
+         background-color: rgba(0, 0, 0, 0.3);
+         color: #fff;
+         text-align: center;
+         padding: 1px 0;
+         width: 100%;
+         height: 30px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         position: relative;
+         margin-top: auto;
+         }
+      </style>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   </head>
+   <body>
+      <div class="logo-container">
+         <img src="https://soundtrack-season.vercel.app/Web_Logo_Market.png" alt="Logo do Meu Site">
+      </div>
+      <div class="search-container">
+         <input type="text" id="searchInput" placeholder="Buscar Nameless..." onkeyup="filterItems()">
+      </div>
+      <div class="filter-container">
+         <button id="filterButton">Filtro</button>
+         <div id="filterOptions" class="filter-options">
             <div class="filter-option" onclick="redirecionarParaTodos()">
-                <img src="https://so2-market-data.vercel.app/All_Icon.png" alt="Ícone 1" class="filter-icon">
-                <span>Todos</span>
+               <img src="https://so2-market-data.vercel.app/All_Icon.png" alt="Ícone 1" class="filter-icon">
+               <span>Todos</span>
             </div>
             <div class="filter-option" onclick="redirecionarParaFragmentos()">
-                <img src="https://so2-market-data.vercel.app/So2_fragment_icon.png" alt="Ícone 2" class="filter-icon">
-                <span>Fragmentos</span>
+               <img src="https://so2-market-data.vercel.app/So2_fragment_icon.png" alt="Ícone 2" class="filter-icon">
+               <span>Fragmentos</span>
             </div>
             <div class="filter-option" onclick="redirecionarParaFacas()">
-                <img src="https://so2-market-data.vercel.app/M9_Bayonet_Icon.png" alt="Ícone 2"
-                    class="filter-icon filter-icon-retangular">
-                <span>Facas</span>
+               <img src="https://so2-market-data.vercel.app/M9_Bayonet_Icon.png" alt="Ícone 2"
+                  class="filter-icon filter-icon-retangular">
+               <span>Facas</span>
             </div>
             <div class="filter-option">
                <img src="https://so2-market-data.vercel.app/AKR_Icon.png" alt="Ícone 2"
-                    class="filter-icon filter-icon-retangular">
-                <span>Armas</span>
+                  class="filter-icon filter-icon-retangular">
+               <span>Armas</span>
             </div>
             <div class="filter-option">
-                <img src="https://so2-market-data.vercel.app/Case_Icon.png" alt="Ícone 2"class="filter-icon filter-icon-case">
-                <span>Conteiners</span>
-            </div>            
-        </div>
-    </div>
-
-    <div class="item-container" id="namelessFragment">
-        <h2>AWM Treasure Hunter</h2>
-        <div class="collection-name">
+               <img src="https://so2-market-data.vercel.app/Case_Icon.png" alt="Ícone 2"class="filter-icon filter-icon-case">
+               <span>Conteiners</span>
+            </div>
+         </div>
+      </div>
+      <div class="item-container" id="namelessFragment">
+         <h2>AWM Treasure Hunter</h2>
+         <div class="collection-name">
             <img src="https://so2-market-data.vercel.app/So2_Nameless_Collection.png" alt="Ícone da coleção"
-                class="collection-icon">Nameless
-        </div>
-        <div class="item-image">
+               class="collection-icon">Nameless
+         </div>
+         <div class="item-image">
             <img src="https://so2-market-data.vercel.app/So2_Awm_TreasureHunter.png" alt="img" width="100"
-                oncontextmenu="return false"loading="lazy">
-        </div>
-        <div class="chart-container">
+               oncontextmenu="return false"loading="lazy">
+         </div>
+         <div class="chart-container">
             <canvas id="chart1" width="400" height="200"></canvas>
-        </div>
-
-        <table class="unit-table">
+         </div>
+         <table class="unit-table">
             <thead>
-                <tr>
-                    <th class="value">Valor</th>
-                    <th class="value value-cell">850.000 G</th>
-                    <th class="value value-cell">500.000 G</th>
-                    <th class="value value-cell">183.999 G</th>
-                    <th class="value value-cell">66.000 G</th>
-                    <th class="value value-cell">77.500 G</th>
-                    <th class="value value-cell">67.999 G</th>
-                </tr>
-                <tr>
-                    <th class="units">Unidades</th>
-                    
-                    <td class="units-cell">2</td>
-                    <td class="units-cell">6</td>
-                    <td class="units-cell">8</td>
-                    <td class="units-cell">13</td>
-                    <td class="units-cell">9</td>
-                    <td class="units-cell">13</td>
-                </tr>
-                <tr>
-                    <th class="date">Data</th>
-                    <td class="date-cell">10/11/2020</td>
-                    <td class="date-cell">29/11/2021</td>
-                    <td class="date-cell">04/03/2022</td>
-                    <td class="date-cell">21/01/2023</td>
-                    <td class="date-cell">24/05/2023</td>
-                    <td class="date-cell">11/07/2024</td>
-                </tr>
+               <tr>
+                  <th class="value">Valor</th>
+                  <th class="value value-cell">850.000 G</th>
+                  <th class="value value-cell">500.000 G</th>
+                  <th class="value value-cell">183.999 G</th>
+                  <th class="value value-cell">66.000 G</th>
+                  <th class="value value-cell">77.500 G</th>
+                  <th class="value value-cell">67.999 G</th>
+               </tr>
+               <tr>
+                  <th class="units">Unidades</th>
+                  <td class="units-cell">2</td>
+                  <td class="units-cell">6</td>
+                  <td class="units-cell">8</td>
+                  <td class="units-cell">13</td>
+                  <td class="units-cell">9</td>
+                  <td class="units-cell">13</td>
+               </tr>
+               <tr>
+                  <th class="date">Data</th>
+                  <td class="date-cell">10/11/2020</td>
+                  <td class="date-cell">29/11/2021</td>
+                  <td class="date-cell">04/03/2022</td>
+                  <td class="date-cell">21/01/2023</td>
+                  <td class="date-cell">24/05/2023</td>
+                  <td class="date-cell">11/07/2024</td>
+               </tr>
             </thead>
-        </table>
-    </div>
-    <div class="item-container" id="namelessFragment">
-        <h2>Karambit Gold</h2>
-        <div class="collection-name">
+         </table>
+      </div>
+      <div class="item-container" id="namelessFragment">
+         <h2>Karambit Gold</h2>
+         <div class="collection-name">
             <img src="https://so2-market-data.vercel.app/So2_Nameless_Collection.png" alt="Ícone da coleção"
-                class="collection-icon">Nameless
-        </div>
-        <div class="item-image">
+               class="collection-icon">Nameless
+         </div>
+         <div class="item-image">
             <img src="https://so2-market-data.vercel.app/So2_KarambitGold.png" alt="img" width="100"
-                oncontextmenu="return false"loading="lazy">
-        </div>
-        <div class="chart-container">
+               oncontextmenu="return false"loading="lazy">
+         </div>
+         <div class="chart-container">
             <canvas id="chart2" width="400" height="200"></canvas>
-        </div>
-        <table class="unit-table">
+         </div>
+         <table class="unit-table">
             <thead>
-                <tr>
-                    <th class="value">Valor</th>
-                    <th class="value value-cell">20.476 G</th>
-                    <th class="value value-cell">26.000 G</th>
-                    <th class="value value-cell">56.300 G</th>
-                    <th class="value value-cell">70.000 G</th>
-                    <th class="value value-cell">88.700 G</th>
-                    <th class="value value-cell">87.000 G</th>
-                    <th class="value value-cell">78.890 G</th>
-                </tr>
-                <tr>
-                    <th class="units">Unidades</th>
-                    <td class="units-cell">6</td>
-                    <td class="units-cell">10</td>
-                    <td class="units-cell">9</td>
-                    <td class="units-cell">14</td>
-                    <td class="units-cell">15</td>
-                    <td class="units-cell">13</td>
-                    <td class="units-cell">20</td>
-                </tr>
-                <tr>
-                    <th class="date">Data</th>
-                    <td class="date-cell">20/3/2019</td>
-                    <td class="date-cell">27/10/2019</td>
-                    <td class="date-cell">11/5/2020</td>
-                    <td class="date-cell">11/04/2021</td>
-                    
-                    <td class="date-cell">29/11/2021</td>
-                    <td class="date-cell">24/5/2023</td>
-                    <td class="date-cell">11/07/2024</td>
-                </tr>
+               <tr>
+                  <th class="value">Valor</th>
+                  <th class="value value-cell">20.476 G</th>
+                  <th class="value value-cell">26.000 G</th>
+                  <th class="value value-cell">56.300 G</th>
+                  <th class="value value-cell">70.000 G</th>
+                  <th class="value value-cell">88.700 G</th>
+                  <th class="value value-cell">87.000 G</th>
+                  <th class="value value-cell">78.890 G</th>
+               </tr>
+               <tr>
+                  <th class="units">Unidades</th>
+                  <td class="units-cell">6</td>
+                  <td class="units-cell">10</td>
+                  <td class="units-cell">9</td>
+                  <td class="units-cell">14</td>
+                  <td class="units-cell">15</td>
+                  <td class="units-cell">13</td>
+                  <td class="units-cell">20</td>
+               </tr>
+               <tr>
+                  <th class="date">Data</th>
+                  <td class="date-cell">20/3/2019</td>
+                  <td class="date-cell">27/10/2019</td>
+                  <td class="date-cell">11/5/2020</td>
+                  <td class="date-cell">11/04/2021</td>
+                  <td class="date-cell">29/11/2021</td>
+                  <td class="date-cell">24/5/2023</td>
+                  <td class="date-cell">11/07/2024</td>
+               </tr>
             </thead>
-        </table>
-    </div>
-    <div class="item-container" id="item3">
-        <h2>Desert Eagle Aureate</h2>
-        <div class="collection-name">
+         </table>
+      </div>
+      <div class="item-container" id="item3">
+         <h2>Desert Eagle Aureate</h2>
+         <div class="collection-name">
             <img src="https://so2-market-data.vercel.app/So2_Nameless_Collection.png" alt="Ícone da coleção"
-                class="collection-icon">Nameless
-        </div>
-        <div class="item-image">
+               class="collection-icon">Nameless
+         </div>
+         <div class="item-image">
             <img src="https://so2-market-data.vercel.app/So2_Desert_Aureate.png" alt="Img" width="100"
-                oncontextmenu="return false"loading="lazy">
-        </div>
-        <div class="chart-container">
+               oncontextmenu="return false"loading="lazy">
+         </div>
+         <div class="chart-container">
             <canvas id="chart3" width="400" height="200"></canvas>
-        </div>
-        <table class="unit-table">
+         </div>
+         <table class="unit-table">
             <thead>
-                <tr>
-                    <th class="value">Valor</th>
-                    <th class="value value-cell">0</th>
-                    <th class="value value-cell"></th>
-                    <th class="value value-cell">0</th>
-                    <th class="value value-cell">0</th>
-                    <th class="value value-cell">62.000 G</th>
-                </tr>
-                <tr>
-                    <th class="units">Unidades</th>
-                    <td class="units-cell">0</td>
-                    <td class="units-cell"></td>
-                    <td class="units-cell">0</td>
-                    <td class="units-cell">0</td>
-                    <td class="units-cell">9</td>
-                </tr>
-                <tr>
-                    <th class="date">Data</th>
-                    <td class="date-cell">0</td>
-                    <td class="date-cell"></td>
-                    <td class="date-cell">0</td>
-                    <td class="date-cell">0</td>
-                    <td class="date-cell">11/07/2024</td>
-                </tr>
+               <tr>
+                  <th class="value">Valor</th>
+                  <th class="value value-cell">0</th>
+                  <th class="value value-cell"></th>
+                  <th class="value value-cell">0</th>
+                  <th class="value value-cell">0</th>
+                  <th class="value value-cell">62.000 G</th>
+               </tr>
+               <tr>
+                  <th class="units">Unidades</th>
+                  <td class="units-cell">0</td>
+                  <td class="units-cell"></td>
+                  <td class="units-cell">0</td>
+                  <td class="units-cell">0</td>
+                  <td class="units-cell">9</td>
+               </tr>
+               <tr>
+                  <th class="date">Data</th>
+                  <td class="date-cell">0</td>
+                  <td class="date-cell"></td>
+                  <td class="date-cell">0</td>
+                  <td class="date-cell">0</td>
+                  <td class="date-cell">11/07/2024</td>
+               </tr>
             </thead>
-        </table>
-    </div>
-    <div class="item-container" id="item3">
-        <h2>G22 Relic</h2>
-        <div class="collection-name">
+         </table>
+      </div>
+      <div class="item-container" id="item3">
+         <h2>G22 Relic</h2>
+         <div class="collection-name">
             <img src="https://so2-market-data.vercel.app/So2_Nameless_Collection.png" alt="Ícone da coleção"
-                class="collection-icon">Nameless
-        </div>
-        <div class="item-image">
+               class="collection-icon">Nameless
+         </div>
+         <div class="item-image">
             <img src="https://so2-market-data.vercel.app/So2_G22_Relic.png" alt="Img" width="100"
-                oncontextmenu="return false"loading="lazy">
-        </div>
-        <div class="chart-container">
+               oncontextmenu="return false"loading="lazy">
+         </div>
+         <div class="chart-container">
             <canvas id="chart4" width="400" height="200"></canvas>
-        </div>
-        <table class="unit-table">
+         </div>
+         <table class="unit-table">
             <thead>
-                <tr>
-                    <th class="value">Valor</th>
-                    <th class="value value-cell">333.333 G</th>
-                    <th class="value value-cell">99.999 G</th>
-                    <th class="value value-cell">55.555 G</th>
-                    <th class="value value-cell">38.900 G</th>
-                    <th class="value value-cell">25.400 G</th>
-                    <th class="value value-cell">24.997</th>
-                    <th class="value value-cell">0</th>
-                    <th class="value value-cell">16.500 G</th>
-                </tr>
-                <tr>
-                    <th class="units">Unidades</th>
-                    <td class="units-cell">2</td>
-                    <td class="units-cell">3</td>
-                    <td class="units-cell">7</td>
-                    <td class="units-cell">5</td>
-                    <td class="units-cell">12</td>
-                    <td class="units-cell">11</td>
-                    <td class="units-cell">0</td>
-                    <td class="units-cell">11</td>
-                </tr>
-                <tr>
-                    <th class="date">Data</th>
-                    <td class="date-cell">11/05/2020</td>
-                    <td class="date-cell">17/06/2020</td>
-                    <td class="date-cell">23/12/2020</td>
-                    <td class="date-cell">17/10/2021</td>
-                    <td class="date-cell">29/11/2021</td>
-                    <td class="date-cell">06/02/2022</td>
-                    <td class="date-cell">0</td>
-                    <td class="date-cell">11/07/2024</td>
-                </tr>
+               <tr>
+                  <th class="value">Valor</th>
+                  <th class="value value-cell">333.333 G</th>
+                  <th class="value value-cell">99.999 G</th>
+                  <th class="value value-cell">55.555 G</th>
+                  <th class="value value-cell">38.900 G</th>
+                  <th class="value value-cell">25.400 G</th>
+                  <th class="value value-cell">24.997</th>
+                  <th class="value value-cell">0</th>
+                  <th class="value value-cell">16.500 G</th>
+               </tr>
+               <tr>
+                  <th class="units">Unidades</th>
+                  <td class="units-cell">2</td>
+                  <td class="units-cell">3</td>
+                  <td class="units-cell">7</td>
+                  <td class="units-cell">5</td>
+                  <td class="units-cell">12</td>
+                  <td class="units-cell">11</td>
+                  <td class="units-cell">0</td>
+                  <td class="units-cell">11</td>
+               </tr>
+               <tr>
+                  <th class="date">Data</th>
+                  <td class="date-cell">11/05/2020</td>
+                  <td class="date-cell">17/06/2020</td>
+                  <td class="date-cell">23/12/2020</td>
+                  <td class="date-cell">17/10/2021</td>
+                  <td class="date-cell">29/11/2021</td>
+                  <td class="date-cell">06/02/2022</td>
+                  <td class="date-cell">0</td>
+                  <td class="date-cell">11/07/2024</td>
+               </tr>
             </thead>
-        </table>
-    </div>
-    <div class="item-container" id="item3">
-        <h2>Duall Daggers Harmony</h2>
-        <div class="collection-name">
+         </table>
+      </div>
+      <div class="item-container" id="item3">
+         <h2>Duall Daggers Harmony</h2>
+         <div class="collection-name">
             <img src="https://so2-market-data.vercel.app/So2_Nameless_Collection.png" alt="Ícone da coleção"
-                class="collection-icon">Nameless
-        </div>
-        <div class="item-image">
+               class="collection-icon">Nameless
+         </div>
+         <div class="item-image">
             <img src="https://so2-market-data.vercel.app/So2_Duall_Daggers_Harmony.png" alt="Img" width="100" oncontextmenu="return false"loading="lazy">
-        </div>
-        <div class="chart-container">
+         </div>
+         <div class="chart-container">
             <canvas id="chart5" width="400" height="200"></canvas>
-        </div>
-        <table class="unit-table">
+         </div>
+         <table class="unit-table">
             <thead>
-                <tr>
-                    <th class="value">Valor</th>
-                    <th class="value value-cell">0</th>
-                    <th class="value value-cell"></th>
-                    <th class="value value-cell">0</th>
-                    <th class="value value-cell">0</th>
-                    <th class="value value-cell">49.538 G</th>
-                </tr>
-                <tr>
-                    <th class="units">Unidades</th>
-                    <td class="units-cell">0</td>
-                    <td class="units-cell"></td>
-                    <td class="units-cell">0</td>
-                    <td class="units-cell">0</td>
-                    <td class="units-cell">20</td>
-                </tr>
-                <tr>
-                    <th class="date">Data</th>
-                    <td class="date-cell">0</td>
-                    <td class="date-cell"></td>
-                    <td class="date-cell">0</td>
-                    <td class="date-cell">0</td>
-                    <td class="date-cell">11/07/2024</td>
-                </tr>
+               <tr>
+                  <th class="value">Valor</th>
+                  <th class="value value-cell">0</th>
+                  <th class="value value-cell"></th>
+                  <th class="value value-cell">0</th>
+                  <th class="value value-cell">0</th>
+                  <th class="value value-cell">49.538 G</th>
+               </tr>
+               <tr>
+                  <th class="units">Unidades</th>
+                  <td class="units-cell">0</td>
+                  <td class="units-cell"></td>
+                  <td class="units-cell">0</td>
+                  <td class="units-cell">0</td>
+                  <td class="units-cell">20</td>
+               </tr>
+               <tr>
+                  <th class="date">Data</th>
+                  <td class="date-cell">0</td>
+                  <td class="date-cell"></td>
+                  <td class="date-cell">0</td>
+                  <td class="date-cell">0</td>
+                  <td class="date-cell">11/07/2024</td>
+               </tr>
             </thead>
-        </table>
-    </div>
-
-    <div class="item-container" id="item3">
-        <h2>Sting Mimicry</h2>
-        <div class="collection-name">
+         </table>
+      </div>
+      <div class="item-container" id="item3">
+         <h2>Sting Mimicry</h2>
+         <div class="collection-name">
             <img src="https://so2-market-data.vercel.app/So2_Nameless_Collection.png" alt="Ícone da coleção"
-                class="collection-icon">Nameless
-        </div>
-        <div class="item-image">
+               class="collection-icon">Nameless
+         </div>
+         <div class="item-image">
             <img src="https://so2-market-data.vercel.app/So2_Sting_Mimicry.png" alt="Img" width="100" oncontextmenu="return false"loading="lazy">
-        </div>
-        <div class="chart-container">
+         </div>
+         <div class="chart-container">
             <canvas id="chart6" width="400" height="200"></canvas>
-        </div>
-        <table class="unit-table">
+         </div>
+         <table class="unit-table">
             <thead>
-                <tr>
-                    <th class="value">Valor</th>
-                    <th class="value value-cell">0</th>
-                    <th class="value value-cell"></th>
-                    <th class="value value-cell">0</th>
-                    <th class="value value-cell">0</th>
-                    <th class="value value-cell">114.999 G</th>
-                </tr>
-                <tr>
-                    <th class="units">Unidades</th>
-                    <td class="units-cell">0</td>
-                    <td class="units-cell"></td>
-                    <td class="units-cell">0</td>
-                    <td class="units-cell">0</td>
-                    <td class="units-cell">2</td>
-                </tr>
-                <tr>
-                    <th class="date">Data</th>
-                    <td class="date-cell">0</td>
-                    <td class="date-cell"></td>
-                    <td class="date-cell">0</td>
-                    <td class="date-cell">0</td>
-                    <td class="date-cell">11/07/2024</td>
-                </tr>
+               <tr>
+                  <th class="value">Valor</th>
+                  <th class="value value-cell">0</th>
+                  <th class="value value-cell"></th>
+                  <th class="value value-cell">0</th>
+                  <th class="value value-cell">0</th>
+                  <th class="value value-cell">114.999 G</th>
+               </tr>
+               <tr>
+                  <th class="units">Unidades</th>
+                  <td class="units-cell">0</td>
+                  <td class="units-cell"></td>
+                  <td class="units-cell">0</td>
+                  <td class="units-cell">0</td>
+                  <td class="units-cell">2</td>
+               </tr>
+               <tr>
+                  <th class="date">Data</th>
+                  <td class="date-cell">0</td>
+                  <td class="date-cell"></td>
+                  <td class="date-cell">0</td>
+                  <td class="date-cell">0</td>
+                  <td class="date-cell">11/07/2024</td>
+               </tr>
             </thead>
-        </table>
-    </div>
-
-    <div class="item-container" id="item3">
-        <h2>AWM Sport V2</h2>
-        <div class="collection-name">
+         </table>
+      </div>
+      <div class="item-container" id="item3">
+         <h2>AWM Sport V2</h2>
+         <div class="collection-name">
             <img src="https://so2-market-data.vercel.app/So2_Nameless_Collection.png" alt="Ícone da coleção"
-                class="collection-icon">Nameless
-        </div>
-        <div class="item-image">
+               class="collection-icon">Nameless
+         </div>
+         <div class="item-image">
             <img src="https://so2-market-data.vercel.app/So2_Awm_SportV2.png" alt="Img" width="100" oncontextmenu="return false"loading="lazy">
-        </div>
-        <div class="chart-container">
+         </div>
+         <div class="chart-container">
             <canvas id="chart7" width="400" height="200"></canvas>
-        </div>
-        <table class="unit-table">
+         </div>
+         <table class="unit-table">
             <thead>
-                <tr>
-                    <th class="value">Valor</th>
-                    <th class="value value-cell">88.888 G</th>
-                    <th class="value value-cell">25.000 G</th>
-                    <th class="value value-cell">28.200 G</th>
-                    <th class="value value-cell">44.500 G</th>
-                    <th class="value value-cell">38.555,54 G</th>
-                </tr>
-                <tr>
-                    <th class="units">Unidades</th>
-                    <td class="units-cell">1</td>
-                    <td class="units-cell">2</td>
-                    <td class="units-cell">23</td>
-                    <td class="units-cell">25</td>
-                    <td class="units-cell">33</td>
-                </tr>
-                <tr>
-                    <th class="date">Data</th>
-                    <td class="date-cell">10/10/2018</td>
-                    <td class="date-cell">12/10/2018</td>
-                    <td class="date-cell">11/05/2020</td>
-                    <td class="date-cell">29/11/2021</td>
-                    <td class="date-cell">11/07/2024</td>
-                </tr>
+               <tr>
+                  <th class="value">Valor</th>
+                  <th class="value value-cell">88.888 G</th>
+                  <th class="value value-cell">25.000 G</th>
+                  <th class="value value-cell">28.200 G</th>
+                  <th class="value value-cell">44.500 G</th>
+                  <th class="value value-cell">38.555,54 G</th>
+               </tr>
+               <tr>
+                  <th class="units">Unidades</th>
+                  <td class="units-cell">1</td>
+                  <td class="units-cell">2</td>
+                  <td class="units-cell">23</td>
+                  <td class="units-cell">25</td>
+                  <td class="units-cell">33</td>
+               </tr>
+               <tr>
+                  <th class="date">Data</th>
+                  <td class="date-cell">10/10/2018</td>
+                  <td class="date-cell">12/10/2018</td>
+                  <td class="date-cell">11/05/2020</td>
+                  <td class="date-cell">29/11/2021</td>
+                  <td class="date-cell">11/07/2024</td>
+               </tr>
             </thead>
-        </table>
-    </div>
-
-    <div class="item-container" id="item3">
-        <h2>USP Genesis</h2>
-        <div class="collection-name">
+         </table>
+      </div>
+      <div class="item-container" id="item3">
+         <h2>USP Genesis</h2>
+         <div class="collection-name">
             <img src="https://so2-market-data.vercel.app/So2_Nameless_Collection.png" alt="Ícone da coleção"
-                class="collection-icon">Nameless
-        </div>
-        <div class="item-image">
+               class="collection-icon">Nameless
+         </div>
+         <div class="item-image">
             <img src="https://so2-market-data.vercel.app/So2_USP_Genesis.png" alt="Img" width="100" oncontextmenu="return false"loading="lazy">
-        </div>
-        <div class="chart-container">
+         </div>
+         <div class="chart-container">
             <canvas id="chart8" width="400" height="200"></canvas>
-        </div>
-        <table class="unit-table">
+         </div>
+         <table class="unit-table">
             <thead>
-                <tr>
-                    <th class="value">Valor</th>
-                    
-                    <th class="value value-cell">8.990 G</th>
-                    <th class="value value-cell">0</th>
-                    <th class="value value-cell">27.994 G</th>
-                    <th class="value value-cell">28.868 G</th>
-                </tr>
-                <tr>
-                    <th class="units">Unidades</th>
-                    
-                    <td class="units-cell">19</td>
-                    <td class="units-cell">0</td>
-                    <td class="units-cell">21</td>
-                    <td class="units-cell">31</td>
-                </tr>
-                <tr>
-                    <th class="date">Data</th>
-                    
-                    <td class="date-cell">11/05/2020</td>
-                    <td class="date-cell">0</td>
-                    <td class="date-cell">25/05/2023</td>
-                    <td class="date-cell">11/07/2024</td>
-                </tr>
+               <tr>
+                  <th class="value">Valor</th>
+                  <th class="value value-cell">8.990 G</th>
+                  <th class="value value-cell">0</th>
+                  <th class="value value-cell">27.994 G</th>
+                  <th class="value value-cell">28.868 G</th>
+               </tr>
+               <tr>
+                  <th class="units">Unidades</th>
+                  <td class="units-cell">19</td>
+                  <td class="units-cell">0</td>
+                  <td class="units-cell">21</td>
+                  <td class="units-cell">31</td>
+               </tr>
+               <tr>
+                  <th class="date">Data</th>
+                  <td class="date-cell">11/05/2020</td>
+                  <td class="date-cell">0</td>
+                  <td class="date-cell">25/05/2023</td>
+                  <td class="date-cell">11/07/2024</td>
+               </tr>
             </thead>
-        </table>
-    </div>
-
-    <div class="item-container" id="item3">
-        <h2>FN FAL Leather</h2>
-        <div class="collection-name">
+         </table>
+      </div>
+      <div class="item-container" id="item3">
+         <h2>FN FAL Leather</h2>
+         <div class="collection-name">
             <img src="https://so2-market-data.vercel.app/So2_Nameless_Collection.png" alt="Ícone da coleção"
-                class="collection-icon">Nameless
-        </div>
-        <div class="item-image">
+               class="collection-icon">Nameless
+         </div>
+         <div class="item-image">
             <img src="https://so2-market-data.vercel.app/So2_FNFAL_Leather.png" alt="Img" width="100" oncontextmenu="return false"loading="lazy">
-        </div>
-        <div class="chart-container">
+         </div>
+         <div class="chart-container">
             <canvas id="chart9" width="400" height="200"></canvas>
-        </div>
-        <table class="unit-table">
+         </div>
+         <table class="unit-table">
             <thead>
-                <tr>
-                    <th class="value">Valor</th>
-                    <th class="value value-cell">999.999 G</th>
-                    <th class="value value-cell">21.886 G</th>
-                    <th class="value value-cell">0</th>
-                    <th class="value value-cell">0</th>
-                    <th class="value value-cell">16.563 G</th>
-                </tr>
-                <tr>
-                    <th class="units">Unidades</th>
-                    <td class="units-cell">1</td>
-                    <td class="units-cell">14</td>
-                    <td class="units-cell">0</td>
-                    <td class="units-cell">0</td>
-                    <td class="units-cell">14</td>
-                </tr>
-                <tr>
-                    <th class="date">Data</th>
-                    <td class="date-cell">11/05/2020</td>
-                    <td class="date-cell">29/11/2021</td>
-                    <td class="date-cell">0</td>
-                    <td class="date-cell">0</td>
-                    <td class="date-cell">11/07/2024</td>
-                </tr>
+               <tr>
+                  <th class="value">Valor</th>
+                  <th class="value value-cell">999.999 G</th>
+                  <th class="value value-cell">21.886 G</th>
+                  <th class="value value-cell">0</th>
+                  <th class="value value-cell">0</th>
+                  <th class="value value-cell">16.563 G</th>
+               </tr>
+               <tr>
+                  <th class="units">Unidades</th>
+                  <td class="units-cell">1</td>
+                  <td class="units-cell">14</td>
+                  <td class="units-cell">0</td>
+                  <td class="units-cell">0</td>
+                  <td class="units-cell">14</td>
+               </tr>
+               <tr>
+                  <th class="date">Data</th>
+                  <td class="date-cell">11/05/2020</td>
+                  <td class="date-cell">29/11/2021</td>
+                  <td class="date-cell">0</td>
+                  <td class="date-cell">0</td>
+                  <td class="date-cell">11/07/2024</td>
+               </tr>
             </thead>
-        </table>
-    </div>
-
-    <div class="item-container" id="item3">
-        <h2>MAC10 Ruby Shadow</h2>
-        <div class="collection-name">
+         </table>
+      </div>
+      <div class="item-container" id="item3">
+         <h2>MAC10 Ruby Shadow</h2>
+         <div class="collection-name">
             <img src="https://so2-market-data.vercel.app/So2_Nameless_Collection.png" alt="Ícone da coleção"
-                class="collection-icon">Nameless
-        </div>
-        <div class="item-image">
+               class="collection-icon">Nameless
+         </div>
+         <div class="item-image">
             <img src="https://so2-market-data.vercel.app/So2_MAC10_RubyShadow.png" alt="Img" width="100" oncontextmenu="return false"loading="lazy">
-        </div>
-        <div class="chart-container">
+         </div>
+         <div class="chart-container">
             <canvas id="chart10" width="400" height="200"></canvas>
-        </div>
-        <table class="unit-table">
+         </div>
+         <table class="unit-table">
             <thead>
-                <tr>
-                    <th class="value">Valor</th>
-                    <th class="value value-cell">0</th>
-                    <th class="value value-cell"></th>
-                    <th class="value value-cell">0</th>
-                    <th class="value value-cell">0</th>
-                    <th class="value value-cell">0</th>
-                </tr>
-                <tr>
-                    <th class="units">Unidades</th>
-                    <td class="units-cell">0</td>
-                    <td class="units-cell"></td>
-                    <td class="units-cell">0</td>
-                    <td class="units-cell">0</td>
-                    <td class="units-cell">0</td>
-                </tr>
-                <tr>
-                    <th class="date">Data</th>
-                    <td class="date-cell">0</td>
-                    <td class="date-cell"></td>
-                    <td class="date-cell">0</td>
-                    <td class="date-cell">0</td>
-                    <td class="date-cell">11/07/2024</td>
-                </tr>
+               <tr>
+                  <th class="value">Valor</th>
+                  <th class="value value-cell">0</th>
+                  <th class="value value-cell"></th>
+                  <th class="value value-cell">0</th>
+                  <th class="value value-cell">0</th>
+                  <th class="value value-cell">0</th>
+               </tr>
+               <tr>
+                  <th class="units">Unidades</th>
+                  <td class="units-cell">0</td>
+                  <td class="units-cell"></td>
+                  <td class="units-cell">0</td>
+                  <td class="units-cell">0</td>
+                  <td class="units-cell">0</td>
+               </tr>
+               <tr>
+                  <th class="date">Data</th>
+                  <td class="date-cell">0</td>
+                  <td class="date-cell"></td>
+                  <td class="date-cell">0</td>
+                  <td class="date-cell">0</td>
+                  <td class="date-cell">11/07/2024</td>
+               </tr>
             </thead>
-        </table>
-    </div>
-     <div class="footer">
-    <p>Não oficial. Histórico de preços Standoff 2.</p>
-</div>
-    <script>
-        // Função para criar gráficos
-        function createChart(chartId, labels, data, rarity) {
-            var ctx = document.getElementById(chartId).getContext('2d');
-            var colors = [];
-            for (let i = 1; i < data.length; i++) {
-                if (data[i] > data[i - 1]) {
-                    colors.push('#00ff00'); // Verde para aumento
-                } else {
-                    colors.push('#ff0000'); // Vermelho para diminuição
-                }
-            }
-
-            // Calcula a variação percentual
-            var percentageChanges = calculatePercentageChange(data);
-
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Valor',
-                        data: data,
-                        borderColor: '#00ff00',
-                        backgroundColor: 'rgba(0, 255, 0, 0.2)',
-                        borderWidth: 0.5,
-                        pointBorderColor: function (context) {
-                            return context.dataIndex === 0 ? '#00ff00' : colors[context.dataIndex - 1];
-                        },
-                        pointBackgroundColor: function (context) {
-                            return context.dataIndex === 0 ? '#00ff00' : colors[context.dataIndex - 1];
-                        }
-                    }]
-                },
-                options: {
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                title: function (context) {
-                                    return '';
-                                },
-                                label: function (context) {
-                                    let label = context.dataset.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed.y !== null) {
-                                        label += context.parsed.y;
-                                    }
-                                    label += ` (${percentageChanges[context.dataIndex] || 0}%)`;
-                                    return label;
-                                },
-                                afterBody: function () {
-                                    return `Rarity: ${rarity.charAt(0).toUpperCase() + rarity.slice(1)}`;
-                                }
-                            },
-                            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                            borderColor: 'transparent',
-                            borderWidth: 1,
-                        }
-                    },
-                    scales: {
-                        y: {
-                            position: 'right',
-                            beginAtZero: true,
-                            grid: {
-                                color: 'transparent'
-                            },
-                            border: {
-                                color: '#d3d3d3'
-                            },
-                            ticks: {
-                                maxRotation: 0,
-                                minRotation: 0,
-                                font: {
-                                    size: 10
-                                },
-                                color: '#00ff00'
-                            }
-                        },
-                        x: {
-                            ticks: {
-                                maxRotation: 0,
-                                minRotation: 0,
-                                font: {
-                                    size: 9
-                                },
-                                color: 'white'
-                            },
-                            grid: {
-                                color: '#FFFFFF1A'
-                            },
-                            border: {
-                                color: '#d3d3d3'
-                            }
-                        }
-                    },
-                    animation: {
-                        duration: 2000,
-                        easing: 'easeInOutQuad'
-                    }
-                }
-            });
-        }
-
-        // Função para adicionar legendas
-        function addLegend(chartId, rarity) {
-            const rarityColors = {
-                'nameless': 'rarity-nameless-legend',
-
-            };
-            const rarityClass = rarityColors[rarity] || '';
-
-            const legendContainer = document.createElement('div');
-            legendContainer.className = 'legend-container';
-
-            const rarityLegend = document.createElement('div');
-            rarityLegend.className = `rarity-legend ${rarityClass}`;
-
-            const legendText = document.createElement('div');
-            legendText.className = 'legend-text';
-            legendText.textContent = rarity.charAt(0).toUpperCase() + rarity.slice(1);
-
-            legendContainer.appendChild(rarityLegend);
-            legendContainer.appendChild(legendText);
-
-            document.getElementById(chartId).parentNode.appendChild(legendContainer);
-        }
-
-        // Função para converter valores
-        function convertValue(value) {
-            return parseFloat(value.replace(/\./g, '').replace(',', '.'));
-        }
-
-        // Função para calcular a variação percentual
-        function calculatePercentageChange(data) {
-            let changes = [];
-            for (let i = 0; i < data.length; i++) {
-                if (i === 0) {
-                    changes.push(null); // Sem variação para o primeiro valor
-                } else {
-                    let change = ((data[i] - data[i - 1]) / data[i - 1]) * 100;
-                    changes.push(change.toFixed(2));
-                }
-            }
-            return changes;
-        }
-
-        // Função para criar gráficos para os itens
-
-        function createCharts() {
-            const item1Values = [
-                convertValue('850.000'),
-                convertValue('500.000'),
-                convertValue('183.999'),
-                convertValue('66.000'),
-                convertValue('77.500'),
-                convertValue('67.999')
-            ];
-            createChart('chart1', ['10/11/2020', '29/11/2021', '04/3/2022', '21/01/2023','24/05/2023', '11/07/2024'], item1Values, 'Nameless');
-
-            const item2Values = [
-                convertValue('20.476'),
-                convertValue('26.000'),
-                convertValue('56.300'),
-                convertValue('70.000'),
-                convertValue('88.700'),
-                convertValue('87.000'),
-                convertValue('78.890')
-            ];
-            createChart('chart2', ['20/3/2019', '27/10/2019', '11/5/2020','11/04/2021', '29/11/2021', '24/5/2023','11/07/2024'], item2Values, 'Nameless');
-
-            const item3Values = [
-                convertValue('0'),
-                convertValue('0'),
-                convertValue('0'),
-                convertValue('62.000')
-            ];
-            createChart('chart3', ['00/00/2020', '00/00/2023', '00/00/2024', '11/07/2024'], item3Values, 'Nameless');
-
-            const item4Values = [
-                convertValue('333.333'),
-                convertValue('99.999'),
-                convertValue('55.555'),
-                convertValue('38.900'),
-                convertValue('25.400'),
-                convertValue('25.997'),
-                convertValue('16.500')
-            ];
-            createChart('chart4', ['11/05/2020','17/06/2020','23/12/2020','17/10/2021', '29/11/2021', '06/02/2022', '11/07/2024'], item4Values, 'Nameless');
-
-            const item5Values = [
-                convertValue('0'),
-                convertValue('0'),
-                convertValue('0'),
-                convertValue('49.538')
-            ];
-            createChart('chart5', ['00/00/2022', '00/00/2023', '00/00/2024', '11/07/2024'], item5Values, 'Nameless');
-
-            const item6Values = [
-                convertValue('0'),
-                convertValue('0'),
-                convertValue('0'),
-                convertValue('114.999')
-            ];
-            createChart('chart6', ['00/00/2022', '00/00/2023', '00/00/2024', '11/07/2024'], item6Values, 'Nameless');
-
-            const item7Values = [
-                convertValue('88.888'),
-                convertValue('25.000'),
-                convertValue('28.200'),
-                convertValue('44.500'),
-                convertValue('38.555,54')
-            ];
-            createChart('chart7', ['10/10/2018', '12/10/2018', '11/05/2020', '29/11/2021', '11/07/2024'], item7Values, 'Nameless');
-
-            const item8Values = [
-                convertValue('8.990'),
-                convertValue('0'),
-                convertValue('27.994'),
-                convertValue('28.868')
-            ];
-            createChart('chart8', ['11/05/2020', '00/00/2023', '25/05/2023', '11/07/2024'], item8Values, 'Nameless');
-
-            const item9Values = [
-                convertValue('999.999'),
-                
-                convertValue('21.886'),
-                
-                convertValue('16.563')
-            ];
-            createChart('chart9', ['11/05/2020', '29/11/2021', '11/07/2024'], item9Values, 'Nameless');
-
-            const item10Values = [
-                convertValue('0'),
-                convertValue('0'),
-                convertValue('0'),
-                convertValue('0')
-            ];
-            createChart('chart10', ['00/00/2022', '00/00/2023', '00/00/2024', '11/07/2024'], item10Values, 'Nameless');
-
-
-            // Adicionar legendas
-            addLegend('chart1', 'nameless');
-            addLegend('chart2', 'nameless');
-            addLegend('chart3', 'nameless');
-            addLegend('chart4', 'nameless');
-            addLegend('chart5', 'nameless');
-            addLegend('chart6', 'nameless');
-            addLegend('chart7', 'nameless');
-            addLegend('chart8', 'nameless');
-            addLegend('chart9', 'nameless');
-            addLegend('chart10', 'nameless');
-        }
-
-        // Criar gráficos ao carregar a página
-        window.onload = createCharts;
-
-        // Função para filtrar itens
-        function filterItems() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
-            const items = document.querySelectorAll('.item-container');
-            items.forEach(item => {
-                const title = item.querySelector('h2').textContent.toLowerCase();
-                if (title.includes(input)) {
-                    item.style.display = '';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
-
-        // Função para mostrar/ocultar opções de filtro
-        document.getElementById('filterButton').addEventListener('click', () => {
-            const filterOptions = document.getElementById('filterOptions');
-            filterOptions.style.display = filterOptions.style.display === 'none' || !filterOptions.style.display ? 'block' : 'none';
-        });
-        function redirectTo(category) {
-            var baseUrl = "url";
-            window.location.href = baseUrl + category;
-        }
-        function redirecionarParaFragmentos() {
-            window.location.href = "https://so2-market-data.vercel.app/Marketplace%20Fragment.html";
-        }
-        function redirecionarParaTodos() {
-            window.location.href = "https://so2-market-data.vercel.app/Website%20Marketplace.HTML";
-        }
-        function redirecionarParaFacas() {
-            window.location.href = "https://so2-market-data.vercel.app/Marketplace%20Facas.html";
-        }
-         //otimizar grafico
-  
-        document.addEventListener("DOMContentLoaded", function () {
-    const lazyGraphs = [].slice.call(document.querySelectorAll(".lazy-graph"));
-
-    if ("IntersectionObserver" in window) {
-        const lazyGraphObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const graphContainer = entry.target;
-                    const src = graphContainer.getAttribute("data-src");
-                    graphContainer.querySelector("img").src = src;
-                    observer.unobserve(graphContainer);
-                }
-            });
-        });
-
-        lazyGraphs.forEach(graph => {
-            lazyGraphObserver.observe(graph);
-        });
-    } else {
-
-        lazyGraphs.forEach(graph => {
-            const src = graph.getAttribute("data-src");
-        });
-    }
-});
-function renderChart() {
-    requestAnimationFrame(() => {
-        // Código para renderizar o gráfico
-    });
-}
-  
-  
-    </script>
-</body>
-
+         </table>
+      </div>
+      <div class="footer">
+         <p>Não oficial. Histórico de preços Standoff 2.</p>
+      </div>
+      <script>
+         // Função para criar gráficos
+         function createChart(chartId, labels, data, rarity) {
+             var ctx = document.getElementById(chartId).getContext('2d');
+             var colors = [];
+             for (let i = 1; i < data.length; i++) {
+                 if (data[i] > data[i - 1]) {
+                     colors.push('#00ff00'); // Verde para aumento
+                 } else {
+                     colors.push('#ff0000'); // Vermelho para diminuição
+                 }
+             }
+         
+             // Calcula a variação percentual
+             var percentageChanges = calculatePercentageChange(data);
+         
+             new Chart(ctx, {
+                 type: 'line',
+                 data: {
+                     labels: labels,
+                     datasets: [{
+                         label: 'Valor',
+                         data: data,
+                         borderColor: '#00ff00',
+                         backgroundColor: 'rgba(0, 255, 0, 0.2)',
+                         borderWidth: 0.5,
+                         pointBorderColor: function (context) {
+                             return context.dataIndex === 0 ? '#00ff00' : colors[context.dataIndex - 1];
+                         },
+                         pointBackgroundColor: function (context) {
+                             return context.dataIndex === 0 ? '#00ff00' : colors[context.dataIndex - 1];
+                         }
+                     }]
+                 },
+                 options: {
+                     plugins: {
+                         tooltip: {
+                             callbacks: {
+                                 title: function (context) {
+                                     return '';
+                                 },
+                                 label: function (context) {
+                                     let label = context.dataset.label || '';
+                                     if (label) {
+                                         label += ': ';
+                                     }
+                                     if (context.parsed.y !== null) {
+                                         label += context.parsed.y;
+                                     }
+                                     label += ` (${percentageChanges[context.dataIndex] || 0}%)`;
+                                     return label;
+                                 },
+                                 afterBody: function () {
+                                     return `Rarity: ${rarity.charAt(0).toUpperCase() + rarity.slice(1)}`;
+                                 }
+                             },
+                             backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                             borderColor: 'transparent',
+                             borderWidth: 1,
+                         }
+                     },
+                     scales: {
+                         y: {
+                             position: 'right',
+                             beginAtZero: true,
+                             grid: {
+                                 color: 'transparent'
+                             },
+                             border: {
+                                 color: '#d3d3d3'
+                             },
+                             ticks: {
+                                 maxRotation: 0,
+                                 minRotation: 0,
+                                 font: {
+                                     size: 10
+                                 },
+                                 color: '#00ff00'
+                             }
+                         },
+                         x: {
+                             ticks: {
+                                 maxRotation: 0,
+                                 minRotation: 0,
+                                 font: {
+                                     size: 9
+                                 },
+                                 color: 'white'
+                             },
+                             grid: {
+                                 color: '#FFFFFF1A'
+                             },
+                             border: {
+                                 color: '#d3d3d3'
+                             }
+                         }
+                     },
+                     animation: {
+                         duration: 2000,
+                         easing: 'easeInOutQuad'
+                     }
+                 }
+             });
+         }
+         
+         // Função para adicionar legendas
+         function addLegend(chartId, rarity) {
+             const rarityColors = {
+                 'nameless': 'rarity-nameless-legend',
+         
+             };
+             const rarityClass = rarityColors[rarity] || '';
+         
+             const legendContainer = document.createElement('div');
+             legendContainer.className = 'legend-container';
+         
+             const rarityLegend = document.createElement('div');
+             rarityLegend.className = `rarity-legend ${rarityClass}`;
+         
+             const legendText = document.createElement('div');
+             legendText.className = 'legend-text';
+             legendText.textContent = rarity.charAt(0).toUpperCase() + rarity.slice(1);
+         
+             legendContainer.appendChild(rarityLegend);
+             legendContainer.appendChild(legendText);
+         
+             document.getElementById(chartId).parentNode.appendChild(legendContainer);
+         }
+         
+         // Função para converter valores
+         function convertValue(value) {
+             return parseFloat(value.replace(/\./g, '').replace(',', '.'));
+         }
+         
+         // Função para calcular a variação percentual
+         function calculatePercentageChange(data) {
+             let changes = [];
+             for (let i = 0; i < data.length; i++) {
+                 if (i === 0) {
+                     changes.push(null); // Sem variação para o primeiro valor
+                 } else {
+                     let change = ((data[i] - data[i - 1]) / data[i - 1]) * 100;
+                     changes.push(change.toFixed(2));
+                 }
+             }
+             return changes;
+         }
+         
+         // Função para criar gráficos para os itens
+         
+         function createCharts() {
+             const item1Values = [
+                 convertValue('850.000'),
+                 convertValue('500.000'),
+                 convertValue('183.999'),
+                 convertValue('66.000'),
+                 convertValue('77.500'),
+                 convertValue('67.999')
+             ];
+             createChart('chart1', ['10/11/2020', '29/11/2021', '04/3/2022', '21/01/2023','24/05/2023', '11/07/2024'], item1Values, 'Nameless');
+         
+             const item2Values = [
+                 convertValue('20.476'),
+                 convertValue('26.000'),
+                 convertValue('56.300'),
+                 convertValue('70.000'),
+                 convertValue('88.700'),
+                 convertValue('87.000'),
+                 convertValue('78.890')
+             ];
+             createChart('chart2', ['20/3/2019', '27/10/2019', '11/5/2020','11/04/2021', '29/11/2021', '24/5/2023','11/07/2024'], item2Values, 'Nameless');
+         
+             const item3Values = [
+                 convertValue('0'),
+                 convertValue('0'),
+                 convertValue('0'),
+                 convertValue('62.000')
+             ];
+             createChart('chart3', ['00/00/2020', '00/00/2023', '00/00/2024', '11/07/2024'], item3Values, 'Nameless');
+         
+             const item4Values = [
+                 convertValue('333.333'),
+                 convertValue('99.999'),
+                 convertValue('55.555'),
+                 convertValue('38.900'),
+                 convertValue('25.400'),
+                 convertValue('25.997'),
+                 convertValue('16.500')
+             ];
+             createChart('chart4', ['11/05/2020','17/06/2020','23/12/2020','17/10/2021', '29/11/2021', '06/02/2022', '11/07/2024'], item4Values, 'Nameless');
+         
+             const item5Values = [
+                 convertValue('0'),
+                 convertValue('0'),
+                 convertValue('0'),
+                 convertValue('49.538')
+             ];
+             createChart('chart5', ['00/00/2022', '00/00/2023', '00/00/2024', '11/07/2024'], item5Values, 'Nameless');
+         
+             const item6Values = [
+                 convertValue('0'),
+                 convertValue('0'),
+                 convertValue('0'),
+                 convertValue('114.999')
+             ];
+             createChart('chart6', ['00/00/2022', '00/00/2023', '00/00/2024', '11/07/2024'], item6Values, 'Nameless');
+         
+             const item7Values = [
+                 convertValue('88.888'),
+                 convertValue('25.000'),
+                 convertValue('28.200'),
+                 convertValue('44.500'),
+                 convertValue('38.555,54')
+             ];
+             createChart('chart7', ['10/10/2018', '12/10/2018', '11/05/2020', '29/11/2021', '11/07/2024'], item7Values, 'Nameless');
+         
+             const item8Values = [
+                 convertValue('8.990'),
+                 convertValue('0'),
+                 convertValue('27.994'),
+                 convertValue('28.868')
+             ];
+             createChart('chart8', ['11/05/2020', '00/00/2023', '25/05/2023', '11/07/2024'], item8Values, 'Nameless');
+         
+             const item9Values = [
+                 convertValue('999.999'),
+                 
+                 convertValue('21.886'),
+                 
+                 convertValue('16.563')
+             ];
+             createChart('chart9', ['11/05/2020', '29/11/2021', '11/07/2024'], item9Values, 'Nameless');
+         
+             const item10Values = [
+                 convertValue('0'),
+                 convertValue('0'),
+                 convertValue('0'),
+                 convertValue('0')
+             ];
+             createChart('chart10', ['00/00/2022', '00/00/2023', '00/00/2024', '11/07/2024'], item10Values, 'Nameless');
+         
+         
+             // Adicionar legendas
+             addLegend('chart1', 'nameless');
+             addLegend('chart2', 'nameless');
+             addLegend('chart3', 'nameless');
+             addLegend('chart4', 'nameless');
+             addLegend('chart5', 'nameless');
+             addLegend('chart6', 'nameless');
+             addLegend('chart7', 'nameless');
+             addLegend('chart8', 'nameless');
+             addLegend('chart9', 'nameless');
+             addLegend('chart10', 'nameless');
+         }
+         
+         // Criar gráficos ao carregar a página
+         window.onload = createCharts;
+         
+         // Função para filtrar itens
+         function filterItems() {
+             const input = document.getElementById('searchInput').value.toLowerCase();
+             const items = document.querySelectorAll('.item-container');
+             items.forEach(item => {
+                 const title = item.querySelector('h2').textContent.toLowerCase();
+                 if (title.includes(input)) {
+                     item.style.display = '';
+                 } else {
+                     item.style.display = 'none';
+                 }
+             });
+         }
+         
+         // Função para mostrar/ocultar opções de filtro
+         document.getElementById('filterButton').addEventListener('click', () => {
+             const filterOptions = document.getElementById('filterOptions');
+             filterOptions.style.display = filterOptions.style.display === 'none' || !filterOptions.style.display ? 'block' : 'none';
+         });
+         // ocultar filtro click de fora
+         document.addEventListener('click', function(event) {
+         const filterButton = document.getElementById('filterButton');
+         const filterOptions = document.getElementById('filterOptions');
+         
+         if (!filterButton.contains(event.target) && !filterOptions.contains(event.target)) {
+         filterOptions.style.display = 'none';
+         }
+         });
+         function redirectTo(category) {
+             var baseUrl = "url";
+             window.location.href = baseUrl + category;
+         }
+         function redirecionarParaFragmentos() {
+             window.location.href = "https://so2-market-data.vercel.app/Marketplace%20Fragment.html";
+         }
+         function redirecionarParaTodos() {
+             window.location.href = "https://so2-market-data.vercel.app/Website%20Marketplace.HTML";
+         }
+         function redirecionarParaFacas() {
+             window.location.href = "https://so2-market-data.vercel.app/Marketplace%20Facas.html";
+         }
+          //otimizar grafico
+         
+         document.addEventListener("DOMContentLoaded", function () {
+         const lazyGraphs = [].slice.call(document.querySelectorAll(".lazy-graph"));
+         
+         if ("IntersectionObserver" in window) {
+         const lazyGraphObserver = new IntersectionObserver((entries, observer) => {
+             entries.forEach(entry => {
+                 if (entry.isIntersecting) {
+                     const graphContainer = entry.target;
+                     const src = graphContainer.getAttribute("data-src");
+                     graphContainer.querySelector("img").src = src;
+                     observer.unobserve(graphContainer);
+                 }
+             });
+         });
+         
+         lazyGraphs.forEach(graph => {
+             lazyGraphObserver.observe(graph);
+         });
+         } else {
+         
+         lazyGraphs.forEach(graph => {
+             const src = graph.getAttribute("data-src");
+         });
+         }
+         });
+         function renderChart() {
+         requestAnimationFrame(() => {
+         // Código para renderizar o gráfico
+         });
+         }
+         
+         
+      </script>
+   </body>
 </html>
