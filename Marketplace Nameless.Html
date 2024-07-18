@@ -384,7 +384,7 @@
                   <th class="value value-cell">38.900 G</th>
                   <th class="value value-cell">25.400 G</th>
                   <th class="value value-cell">24.997</th>
-                  <th class="value value-cell">0</th>
+                  
                   <th class="value value-cell">16.500 G</th>
                </tr>
                <tr>
@@ -395,7 +395,7 @@
                   <td class="units-cell">5</td>
                   <td class="units-cell">12</td>
                   <td class="units-cell">11</td>
-                  <td class="units-cell">0</td>
+                  
                   <td class="units-cell">11</td>
                </tr>
                <tr>
@@ -406,7 +406,7 @@
                   <td class="date-cell">17/10/2021</td>
                   <td class="date-cell">29/11/2021</td>
                   <td class="date-cell">06/02/2022</td>
-                  <td class="date-cell">0</td>
+                  
                   <td class="date-cell">11/07/2024</td>
                </tr>
             </thead>
@@ -689,7 +689,8 @@
                          },
                          pointBackgroundColor: function (context) {
                              return context.dataIndex === 0 ? '#00ff00' : colors[context.dataIndex - 1];
-                         }
+                         },
+                       pointRadius: 1.5
                      }]
                  },
                  options: {
