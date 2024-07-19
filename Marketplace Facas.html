@@ -727,7 +727,8 @@
                          },
                          pointBackgroundColor: function (context) {
                              return context.dataIndex === 0 ? '#00ff00' : colors[context.dataIndex - 1];
-                         }
+                         },
+                         pointRadius: 2
                      }]
                  },
                  options: {
@@ -743,7 +744,7 @@
                                          label += ': ';
                                      }
                                      if (context.parsed.y !== null) {
-                                         label += context.parsed.y;
+                                        label += context.parsed.y.toLocaleString('pt-BR') + ' Golds';
                                      }
                                      label += ` (${percentageChanges[context.dataIndex] || 0}%)`;
                                      return label;
