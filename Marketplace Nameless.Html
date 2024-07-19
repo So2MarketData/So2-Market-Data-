@@ -690,11 +690,11 @@
                          pointBackgroundColor: function (context) {
                              return context.dataIndex === 0 ? '#00ff00' : colors[context.dataIndex - 1];
                          },
-                       pointRadius: 1.5
+                       pointRadius: 2
                      }]
                  },
                  options: {
-                     plugins: {
+                  plugins: {
                          tooltip: {
                              callbacks: {
                                  title: function (context) {
@@ -706,7 +706,7 @@
                                          label += ': ';
                                      }
                                      if (context.parsed.y !== null) {
-                                         label += context.parsed.y;
+                                       label += context.parsed.y.toLocaleString('pt-BR') + ' Golds';
                                      }
                                      label += ` (${percentageChanges[context.dataIndex] || 0}%)`;
                                      return label;
@@ -818,7 +818,7 @@
                  convertValue('77.500'),
                  convertValue('67.999')
              ];
-             createChart('chart1', ['10/11/2020', '29/11/2021', '04/3/2022', '21/01/2023','24/05/2023', '11/07/2024'], item1Values, 'Nameless');
+             createChart('chart1', ['10 Nov 2020', '29 Nov 2021', '04 Mar 2022', '21 Jan 2023','24 Mai 2023', '11 Jul 2024'], item1Values, 'Nameless');
          
              const item2Values = [
                  convertValue('20.476'),
