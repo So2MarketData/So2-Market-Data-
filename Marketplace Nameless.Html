@@ -142,12 +142,13 @@
          }
          .chart-container {
          background-color: #1c1c1c;
-         padding: 10px;
+         padding: 20px;
          border: 2px solid #7c9bce;
          border-radius: 5px;
-         display: inline-block;
+         display: block;
          margin-top: 20px;
          margin-bottom: 15px;
+         width: 500px;
          }
          .legend-container {
          display: flex;
@@ -326,7 +327,7 @@
          <table class="unit-table">
             <thead>
                <tr>
-<th class="value">Valor</th>
+                 <th class="value">Valor</th>
                   <th class="value value-cell">400.000 G</th>
                   <th class="value value-cell">249.000 G</th>
                   <th class="value value-cell">373.959 G</th>
@@ -840,7 +841,7 @@
                  convertValue('84.999'),
                  convertValue('62.000')
              ];
-             createChart('chart3', ['Out 2023', 'Nov 2023', 'Nov 2023', 'Dez 2023', 'Jan 2024', 'Fev 2024', 'Mai 2024', 'Jul 2024'], item3Values, 'Nameless');
+             createChart('chart3', ['Out 2023', 'Nov 2023', 'Dez 2023', 'Jan 2024', 'Fev 2024', 'Mai 2024', 'Jul 2024'], item3Values, 'Nameless');
          
              const item4Values = [
                  convertValue('333.333'),
