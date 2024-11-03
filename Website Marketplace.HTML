@@ -7,7 +7,7 @@
       <style>
          body {
          font-family: Arial, sans-serif;
-         background-image: url('https://soundtrack-season.vercel.app/Web_Background.png');
+         background-image: url('https://pack-standoff.vercel.app/Pack_So2_Background_Reforged.jpg');
          background-size: cover;
          background-position: center;
          background-attachment: fixed;
@@ -204,7 +204,7 @@
    </head>
    <body>
       <div class="logo-container">
-         <img src="https://soundtrack-season.vercel.app/Web_Logo_Market.png" alt="Logo do Meu Site">
+         <img src="https://so2-market-data.vercel.app/So2_Market_Data_Logo.png" alt="Logo do Meu Site">
       </div>
       <div class="search-container">
          <input type="text" id="searchInput" placeholder="Buscar item..." onkeyup="filterItems()">
@@ -236,12 +236,11 @@
          </div>
       </div>
       <div class="item-container" id="namelessFragment">
-         <h2>Nameless Fragment</h2>
+         <h2>AKR Treasure Hunter</h2>
          <div class="collection-name">
-            <img src="https://so2-market-data.vercel.app/So2_Collection.png" alt="Ícone da coleção" class="collection-icon">SO2 Collection
-         </div>
+            <img src="https://so2-market-data.vercel.app/So2_Origin_Icon.png" alt="Ícone da coleção" class="collection-icon">Origin Collection</div>
          <div class="item-image">
-            <img src="https://soundtrack-season.vercel.app/Web_Nameless_Fragment.png" alt="Nameless Fragment"width="100" oncontextmenu="return false">
+            <img src="https://so2-market-data.vercel.app/So2_Akr_TH.png" alt="Nameless Fragment"width="100" oncontextmenu="return false">
          </div>
          <div class="chart-container">
             <canvas id="chart1" width="400" height="200"></canvas>
@@ -249,28 +248,28 @@
          <table class="unit-table">
             <thead>
                <tr>
-                  <th class="value">Valor</th>
-                  <th class="value value-cell">49.000</th>
-                  <th class="value value-cell">11.799,99</th>
-                  <th class="value value-cell"></th>
-                  <th class="value value-cell"></th>
-                  <th class="value value-cell"></th>
+                  <th class="value">Valor</th>                 
+                  <th class="value value-cell">5.700,00</th>
+                  <th class="value value-cell">5.599,00</th>
+                  <th class="value value-cell">5.500,00</th>
+                  <th class="value value-cell">6.300,00</th>
+                  <th class="value value-cell">7.193,00</th>
                </tr>
                <tr>
                   <th class="units">Unidades</th>
-                  <td class="units-cell">4</td>
-                  <td class="units-cell">45</td>
-                  <td class="units-cell"></td>
-                  <td class="units-cell"></td>
-                  <td class="units-cell"></td>
+                  <td class="units-cell">193</td>
+                  <td class="units-cell">190</td>
+                  <td class="units-cell">234</td>
+                  <td class="units-cell">211</td>
+                  <td class="units-cell">73</td>
                </tr>
                <tr>
-                  <th class="date">Data</th>
-                  <td class="date-cell">23/06/2024</td>
-                  <td class="date-cell">05/07/2024</td>
-                  <td class="date-cell"></td>
-                  <td class="date-cell"></td>
-                  <td class="date-cell"></td>
+                  <th class="date">Data</th>               
+                  <td class="date-cell">11/11/2023</td>
+                  <td class="date-cell">13/01/2024</td>
+                  <td class="date-cell">03/08/2024</td>
+                  <td class="date-cell">06/10/2024</td>
+                  <td class="date-cell">03/11/2024</td>
                </tr>
             </thead>
          </table>
@@ -514,7 +513,7 @@
          </table>
       </div>
       <div class="footer">
-         <p>Não oficial. Histórico de preços Standoff 2.</p>
+         <p>Não oficial. Histórico de preços do Standoff 2.</p>
       </div>
       <script>
          // Função para criar gráficos
@@ -671,11 +670,14 @@
          
          // Função para criar gráficos para os itens
          function createCharts() {
-             const namelessValues = [
-                 convertValue('49.000,99'),
-                 convertValue('11.799,99')
+             const akrTHValues = [
+                 convertValue('5.700,00'),
+                 convertValue('5.599,00'),
+                 convertValue('5.500,00'),
+                 convertValue('6.300,00'),
+                 convertValue('7.193,00')
              ];
-             createChart('chart1', ['Jun 2024', 'Jul 2024'], namelessValues, 'nameless');
+             createChart('chart1', ['Out 2023','Jan 2024','Ago 2024', 'Out 2024', 'Nov 2024'], akrTHValues, 'arcane');
          
              const arcaneValues = [
                  convertValue('1000'),
@@ -716,7 +718,7 @@
              createChart('chart7', ['Fev 2022', 'Jan 2023', 'Jan 2024', 'Jul 2024'], m9BayonetakumoValues, 'Arcane');
          
              // Adicionar legendas
-             addLegend('chart1', 'nameless');
+             addLegend('chart1', 'arcane');
              addLegend('chart2', 'arcane');
              addLegend('chart3', 'legendary');
              addLegend('chart4', 'epic');
