@@ -123,16 +123,20 @@
         }
 
         .collection-icon {
-            width: 20px;
-            /* Ajuste o tamanho do ícone conforme necessário */
+            width: 20px;           
             height: 20px;
             margin-right: 5px;
         }
 
         .collection-icon-retangular {
-            width: 37px;
-            /* Ajuste o tamanho do ícone conforme necessário */
+            width: 37px;           
             height: 20px;
+            margin-right: 5px;
+        } 
+  
+        .collection-icon-retangular2 {
+            width: 17px;           
+            height: 28px;
             margin-right: 5px;
         }
 
@@ -305,6 +309,20 @@
         </div>
         <div class="chart-container">
             <canvas id="chart5" width="400" height="200"></canvas>
+        </div>
+    </div>
+        <div class="item-container" id="arcaneFragment">
+        <h2>M4 Samurai</h2>
+        <div class="collection-name">
+            <img src="https://so2-market-data.vercel.app/So2_Fable_Collection.png" alt="Ícone da coleção" class="collection-icon-retangular2">Fable Collection
+            <img src="https://so2-market-data.vercel.app/So2_Stattrack_Icon.png" alt="Ícone da raridade" style="margin-left: 20px; width: 20px; height: 20px;" >
+            <span style="color: white; font-size: 12px; margin-left: 5px;">StatTrack</span>
+        </div>
+        <div class="item-image">
+            <img src="https://so2-market-data.vercel.app/So2_M4_Samurai.png" alt="item" width="100" oncontextmenu="return false">
+        </div>
+        <div class="chart-container">
+            <canvas id="chart6" width="400" height="200"></canvas>
         </div>
     </div>
 
@@ -598,6 +616,23 @@
                 item5Alugueis,
                 'arcane'
             );
+          
+               const item6Values = [
+                 convertValue('0'),
+                 convertValue('0'),                
+                 convertValue('0')
+            ];
+            const item6Unidades = [0, 0, 0];
+            const item6Alugueis = [0, 0, 0];
+
+            createChart(
+                'chart6',
+                ['0 Mai 20 ', '0 Jun 20', '0 Dez 20'],
+                item6Values,
+                item6Unidades,
+                item6Alugueis,
+                'arcane'
+            );
         }
         // Adicionar legendas
         addLegend('chart1', 'arcane');
@@ -605,6 +640,7 @@
         addLegend('chart3', 'arcane');
         addLegend('chart4', 'arcane');
         addLegend('chart5', 'arcane');
+        addLegend('chart6', 'arcane');
 
         // Criar gráficos ao carregar a página
         window.onload = createCharts;
