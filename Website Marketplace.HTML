@@ -260,12 +260,12 @@
         </div>
     </div>
     <div class="item-container" id="arcaneFragment">
-        <h2>Arcane Fragment</h2>
+        <h2>Gloves Autumn</h2>
         <div class="collection-name">
-            <img src="https://so2-market-data.vercel.app/So2_Collection.png" alt="Ícone da coleção" class="collection-icon">SO2 Collection
+            <img src="https://so2-market-data.vercel.app/So2_Revival_Collection.png" alt="Ícone da coleção" class="collection-icon">Revival Collection
         </div>
         <div class="item-image">
-            <img src="https://soundtrack-season.vercel.app/Web_Arcane_Fragment.jpg" alt="Arcane Fragment" width="100" oncontextmenu="return false">
+            <img src="https://so2-market-data.vercel.app/So2_Gloves_Autumn.png" alt="Arcane Fragment" width="100" oncontextmenu="return false">
         </div>
         <div class="chart-container">
             <canvas id="chart2" width="400" height="200"></canvas>
@@ -293,6 +293,18 @@
         </div>
         <div class="chart-container">
             <canvas id="chart4" width="400" height="200"></canvas>
+        </div>
+    </div>
+        <div class="item-container" id="arcaneFragment">
+        <h2>AWM 2 Years</h2>
+        <div class="collection-name">
+            <img src="https://so2-market-data.vercel.app/So2_2Years_Collection.png" alt="Ícone da coleção" class="collection-icon-retangular">2 Years Collection
+        </div>
+        <div class="item-image">
+            <img src="https://so2-market-data.vercel.app/So2_Awm_2Years.png" alt="item" width="100" oncontextmenu="return false">
+        </div>
+        <div class="chart-container">
+            <canvas id="chart5" width="400" height="200"></canvas>
         </div>
     </div>
 
@@ -493,11 +505,11 @@
 
             // Dados do segundo gráfico
             const arcaneValues = [
-                convertValue('1000'),
-                convertValue('162'),
-                convertValue('65')
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0')
             ];
-            const arcaneUnidades = [42, 2847, 4877];
+            const arcaneUnidades = [0, 0, 0];
             const arcaneAlugueis = [0, 0, 0];
 
             createChart(
@@ -558,12 +570,29 @@
                 KarambitClawAlugueis,
                 'arcane'
             );
+                const item5Values = [
+                 convertValue('0'),
+                 convertValue('0'),
+                 
+            ];
+            const item5Unidades = [0, 0];
+            const item5Alugueis = [0, 0];
+
+            createChart(
+                'chart5',
+                ['0 Mai 20 ', '0 Jun 20'],
+                item5Values,
+                item5Unidades,
+                item5Alugueis,
+                'arcane'
+            );
         }
         // Adicionar legendas
         addLegend('chart1', 'arcane');
         addLegend('chart2', 'arcane');
         addLegend('chart3', 'arcane');
         addLegend('chart4', 'arcane');
+        addLegend('chart5', 'arcane');
 
         // Criar gráficos ao carregar a página
         window.onload = createCharts;
