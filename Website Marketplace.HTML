@@ -274,7 +274,7 @@
     <div class="item-container" id="arcaneFragment">
         <h2>M9 Bayonet Frozen</h2>
         <div class="collection-name">
-            <img src="https://so2-market-data.vercel.app/So2_New_Year_2021_Collection.png" alt="Ícone da coleção" class="collection-icon">SO2 Collection
+            <img src="https://so2-market-data.vercel.app/So2_New_Year_2021_Collection.png" alt="Ícone da coleção" class="collection-icon">New Years 2021 Collection
         </div>
         <div class="item-image">
             <img src="https://so2-market-data.vercel.app/So2_M9_Frozen.png" alt="M9" width="100" oncontextmenu="return false">
@@ -477,6 +477,8 @@
             // Dados do primeiro gráfico
             const akrTHValues = [
                 convertValue('615'),
+                convertValue('1.900'),
+                convertValue('2.200'),
                 convertValue('2.400'),
                 convertValue('2.300'),
                 convertValue('2.300'),
@@ -491,12 +493,12 @@
                 convertValue('6.798,00'),
                 convertValue('7.200,00')
             ];
-            const akrTHUnidades = [0, 214, 258, 210, 201, 185, 172, 193, 190, 234, 211, 73, 90, 104];
-            const akrTHAlugueis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 300, 70, 73];
+            const akrTHUnidades = [0, 214, 207, 214, 258, 210, 201, 185, 172, 193, 190, 234, 211, 73, 90, 104];
+            const akrTHAlugueis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 300, 70, 73];
 
             createChart(
                 'chart1',
-                ['21 Abr 2020', '3 Set 2022', '24 Out 2022', '6 Nov 2022', '28 Nov 2022', '6 Jan 2023', '14 Jan 2023', '11 Out 2023', '1 Jan 2024', '3 Ago 2024', '6 Out 2024', '3 Nov 2024', '17 Nov 2024', '6 Dez 2024'],
+                ['21 Abr 2020','16 Mar 2022', '30 Mar 2022', '3 Set 2022', '24 Out 2022', '6 Nov 2022', '28 Nov 2022', '6 Jan 2023', '14 Jan 2023', '11 Out 2023', '1 Jan 2024', '3 Ago 2024', '6 Out 2024', '3 Nov 2024', '17 Nov 2024', '6 Dez 2024'],
                 akrTHValues,
                 akrTHUnidades,
                 akrTHAlugueis,
@@ -505,16 +507,16 @@
 
             // Dados do segundo gráfico
             const arcaneValues = [
-                convertValue('0'),
-                convertValue('0'),
+                convertValue('2.900'),
+                convertValue('3.200'),
                 convertValue('0')
             ];
-            const arcaneUnidades = [0, 0, 0];
+            const arcaneUnidades = [35, 48, 0];
             const arcaneAlugueis = [0, 0, 0];
 
             createChart(
                 'chart2',
-                ['23 Jun 2024', '5 Jul 2024', '6 Dez 2024'],
+                ['16 Mar 2022','30 Mar 2022', '6 Dez 2024'],
                 arcaneValues,
                 arcaneUnidades,
                 arcaneAlugueis,
@@ -524,6 +526,7 @@
             // Dados do terceiro gráfico
             const m9FValues = [
                 convertValue('2.150'),
+                convertValue('3.666'),
                 convertValue('4.988'),
                 convertValue('5.580'),
                 convertValue('5.343'),
@@ -536,12 +539,12 @@
                 convertValue('7.830'),
                 convertValue('10.599')
             ];
-            const m9FUnidades = [179, 69, 40, 60, 45, 36, 38, 48, 44, 52, 73, 23];
-            const m9FAlugueis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 90];
+            const m9FUnidades = [179, 56, 69, 40, 60, 45, 36, 38, 48, 44, 52, 73, 23];
+            const m9FAlugueis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 90];
 
             createChart(
                 'chart3',
-                ['29 Mar 2021','14 Jun 2022', '3 Set 2022', '24 Out 2022', '6 Nov 2022', '3 Dez 2022', '1 Jan 2023', '6 Jan 2023', '14 Jan 2023', '23 Jan 2023',  '10 Jul 2024', '6 Dez 2024'],
+                ['29 Mar 2021','16 Mar 2022','14 Jun 2022', '3 Set 2022', '24 Out 2022', '6 Nov 2022', '3 Dez 2022', '1 Jan 2023', '6 Jan 2023', '14 Jan 2023', '23 Jan 2023',  '10 Jul 2024', '6 Dez 2024'],
                 m9FValues,
                 m9FUnidades,
                 m9FAlugueis,
@@ -550,6 +553,8 @@
              
             const KarambitClawValues = [
                 convertValue('1.599'),
+                convertValue('2.399'),
+                convertValue('2.797'),
                 convertValue('3.450'),
                 convertValue('3.125'),
                 convertValue('3.044'),
@@ -559,28 +564,31 @@
                 convertValue('7.830'),
                 convertValue('10.599')
             ];
-            const KarambitClawUnidades = [103, 81, 102, 85, 75, 71, 75, 73, 23];
-            const KarambitClawAlugueis = [0, 0, 0, 0, 0, 0, 0, 0, 90];
+            const KarambitClawUnidades = [103, 81, 85, 103, 102, 85, 75, 71, 75, 73, 23];
+            const KarambitClawAlugueis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 90];
 
             createChart(
                 'chart4',
-                ['29 Mar 2021', '3 Set 2022', '24 Out 2022', '6 Nov 2022', '28 Nov 2022', '11 Dez 2022', '1 Jan 2023',  '10 Jul 2024', '6 Dez 2024'],
+                ['29 Mar 2021', '16 Mar 2022', '30 Mar 2022', '3 Set 2022', '24 Out 2022', '6 Nov 2022', '28 Nov 2022', '11 Dez 2022', '1 Jan 2023',  '10 Jul 2024', '6 Dez 2024'],
                 KarambitClawValues,
                 KarambitClawUnidades,
                 KarambitClawAlugueis,
                 'arcane'
             );
                 const item5Values = [
-                 convertValue('0'),
-                 convertValue('0'),
+                 convertValue('3.800'),
+                 convertValue('4.300'),
+                 convertValue('4.770'),
+                 convertValue('4.700'),
+                 convertValue('4.570'),
                  
             ];
-            const item5Unidades = [0, 0];
-            const item5Alugueis = [0, 0];
+            const item5Unidades = [58, 53, 62, 74, 74];
+            const item5Alugueis = [0, 0, 0, 0, 0];
 
             createChart(
                 'chart5',
-                ['0 Mai 20 ', '0 Jun 20'],
+                ['16 Mar 2022 ','30 Mar 2022','14 Jun 2022 ', '3 Set 2022', '24 Out 2022'],
                 item5Values,
                 item5Unidades,
                 item5Alugueis,
