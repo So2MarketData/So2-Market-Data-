@@ -432,8 +432,12 @@
                                 },
                                 afterBody: function(context) {
                                     let unidadesText = `Unidades: ${unidades[context[0].dataIndex]}`;
-                                    let alugueisText = `Aluguel: ${alugueis[context[0].dataIndex]} Golds`;
-                                    return [unidadesText, alugueisText, `Rarity: ${rarity.charAt(0).toUpperCase() + rarity.slice(1)}`];
+                                    let aluguelValue = alugueis[context[0].dataIndex];
+                                    let alugueisText = aluguelValue === 0 ? "Aluguel: Indisponível" : `Aluguel: ${aluguelValue} Golds`;
+                                    return [
+                                        unidadesText,
+                                        alugueisText,
+                                        `Rarity: ${rarity.charAt(0).toUpperCase() + rarity.slice(1)}`];
                                 }
                             },
                             backgroundColor: 'rgba(0, 0, 0, 0.7)',
