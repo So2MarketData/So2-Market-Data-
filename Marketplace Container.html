@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://pack-standoff.vercel.app/Pack_So2_Background_Nightmare.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+        }
+
+        .logo-container img {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: -5px;
+        }
+
+        .search-container {
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        #searchInput {
+            width: 250px;
+            padding: 10px;
+            font-size: 12px;
+            border: 3px solid #7c9bce;
+            border-radius: 4px;
+            background-color: #1c1c1c;
+            color: white;
+        }
+
+        .filter-container {
+            margin-top: 0px;
+            text-align: left;
+        }
+
+        #filterButton {
+            background-color: #7c9bce;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            width: 60%;
+            max-width: 200px;
+        }
+
+        #filterOptions {
+            display: none;
+            margin-top: 10px;
+            background-color: #1c1c1c;
+            border: 2px solid #7c9bce;
+            border-radius: 5px;
+            padding: 10px;
+            position: absolute;
+            width: 60%;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .filter-option:hover {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .filter-icon {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .filter-icon-retangular {
+            width: 50px;
+            height: 17px;
+        }
+
+        .filter-icon-case {
+            width: 33px;
+            height: 30px;
+        }
+
+        .item-container {
+            margin-bottom: 40px;
+            text-align: left;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            min-width: 300px;
+        }
+
+        .item-container h2 {
+            margin-bottom: 10px;
+        }
+
+        .collection-name {
+            font-size: 12px;
+            font-weight: 300;
+            color: white;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .collection-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            margin-top: -3px;
+        }
+
+        .collection-icon-retangular {
+            width: 37px;
+            height: 20px;
+            margin-right: 5px;
+            margin-top: -3px;
+        }
+
+        .item-image {
+            margin-bottom: -5px;
+        }
+
+        .chart-container {
+            background-color: #1c1c1c;
+            padding: 10px;
+            border: 2px solid #7c9bce;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        .legend-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .rarity-legend {
+            width: 20px;
+            height: 10px;
+            margin-right: 10px;
+            border: 1px solid #fff;
+        }
+
+        .rarity-nameless-legend {
+            background-color: #ffae42;
+        }
+
+        .rarity-arcane-legend {
+            background-color: #ff0000;
+        }
+
+        .rarity-legendary-legend {
+            background-color: #800080;
+        }
+
+        .rarity-epic-legend {
+            background-color: #5b0a8c;
+        }
+
+        .rarity-rare-legend {
+            background-color: #00008b;
+            border: 1px solid #7c9bce;
+        }
+
+        .rarity-uncommon-legend {
+            background-color: #71aada;
+        }
+
+        .rarity-Comum {
+            background-color: gray;
+            /* Cor de fundo para Fragmento Ultra */
+        }
+
+        .legend-text {
+            color: white;
+            font-size: 12px;
+        }
+
+        .footer {
+            background-color: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            text-align: center;
+            padding: 1px 0;
+            width: 100%;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-top: auto;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="logo-container">
+        <img src="https://so2-market-data.vercel.app/So2_Market_Data_Logo.png" alt="Logo do Meu Site">
+    </div>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar item..." onkeyup="filterItems()">
+    </div>
+    <div class="filter-container">
+        <button id="filterButton">Filtro</button>
+        <div id="filterOptions" class="filter-options">
+            <div class="filter-option" onclick="redirecionarParaTodos()">
+                <img src="https://so2-market-data.vercel.app/All_Icon.png" alt="Ícone 1" class="filter-icon">
+                <span>Todos</span>
+            </div>
+            <div class="filter-option" onclick="redirecionarParaFragmentos()">
+                <img src="https://so2-market-data.vercel.app/So2_fragment_icon.png" alt="Ícone 1" class="filter-icon" loading="lazy">
+                <span>Fragments</span>
+            </div>
+            <div class="filter-option" onclick="redirecionarParaFacas()">
+                <img src="https://so2-market-data.vercel.app/M9_Bayonet_Icon.png" alt="Ícone 2" class="filter-icon filter-icon-retangular" loading="lazy">
+                <span>Facas</span>
+            </div>
+            <div class="filter-option">
+                <img src="https://so2-market-data.vercel.app/AKR_Icon.png" alt="Ícone 2" class="filter-icon filter-icon-retangular" loading="lazy">
+                <span>Armas</span>
+            </div>
+            <div class="filter-option" onclick="redirecionarParaNameless()">
+                <img src="https://so2-market-data.vercel.app/So2_Nameless_Icon.png" alt="Ícone 6" class="filter-icon" loading="lazy">
+                <span>Nameless</span>
+            </div>
+        </div>
+    </div>
+    <div class="item-container" id="item1">
+        <h2>Origin Case</h2>
+        <div class="collection-name">
+            <img src="https://so2-market-data.vercel.app/So2_Origin_Icon.png" alt="Ícone da coleção" class="collection-icon" loading="lazy">Origin Collection
+        </div>
+        <div class="item-image">
+            <img src="https://so2-market-data.vercel.app/So2_Origin_Case.png" alt="item" width="100" oncontextmenu="return false" loading="lazy">
+        </div>
+        <div class="chart-container">
+            <canvas id="chart1" width="400" height="200"></canvas>
+        </div>
+    </div>
+    <div class="item-container" id="item2">
+        <h2>Furious Case</h2>
+        <div class="collection-name">
+            <img src="https://so2-market-data.vercel.app/So2_Furious_Collection.png" alt="Ícone da coleção" class="collection-icon-retangular" loading="lazy">Furious Collection
+        </div>
+        <div class="item-image">
+            <img src="https://so2-market-data.vercel.app/So2_Furious_Case.png" alt="item" width="100" oncontextmenu="return false" loading="lazy">
+        </div>
+        <div class="chart-container">
+            <canvas id="chart2" width="400" height="200"></canvas>
+        </div>
+    </div>
+    <div class="item-container" id="arcaneFragment">
+        <h2>Rival Case</h2>
+        <div class="collection-name">
+            <img src="https://so2-market-data.vercel.app/So2_Rival_Collection.png" alt="Ícone da coleção" class="collection-icon" loading="lazy">Rival Collection
+        </div>
+        <div class="item-image">
+            <img src="https://so2-market-data.vercel.app/So2_Rival_Case.png" alt="item" width="100" oncontextmenu="return false">
+        </div>
+        <div class="chart-container">
+            <canvas id="chart3" width="400" height="200"></canvas>
+        </div>
+    </div>
+    <div class="item-container" id="arcaneFragment">
+        <h2>Scorpion Case</h2>
+        <div class="collection-name">
+            <img src="https://so2-market-data.vercel.app/So2_Scorpion_Collection.png" alt="Ícone da coleção" class="collection-icon" loading="lazy">Scorpion Collection
+        </div>
+        <div class="item-image">
+            <img src="https://so2-market-data.vercel.app/So2_Scorpion_Case.png" alt="item" width="100" oncontextmenu="return false" loading="lazy">
+        </div>
+        <div class="chart-container">
+            <canvas id="chart4" width="400" height="200"></canvas>
+        </div>
+    </div>
+    <div class="item-container" id="arcaneFragment">
+        <h2>Sharp Case</h2>
+        <div class="collection-name">
+            <img src="https://so2-market-data.vercel.app/So2_Sharp_Collection.png" alt="Ícone da coleção" class="collection-icon" loading="lazy">Sharp Collection
+        </div>
+        <div class="item-image">
+            <img src="https://so2-market-data.vercel.app/So2_Sharp_Case.png" alt="item" width="100" oncontextmenu="return false" loading="lazy">
+        </div>
+        <div class="chart-container">
+            <canvas id="chart5" width="400" height="200"></canvas>
+        </div>
+    </div>
+    <div class="item-container" id="arcaneFragment">
+        <h2>Fun&Sun Knife Case</h2>
+        <div class="collection-name">
+            <img src="https://so2-market-data.vercel.app/So2_Fun&Sun_Collection.png" alt="Ícone da coleção" class="collection-icon" loading="lazy">Fun&Sun Collection
+        </div>
+        <div class="item-image">
+            <img src="https://so2-market-data.vercel.app/So2_Fun&Sun_Knife_Case.png" alt="item" width="100" oncontextmenu="return false" loading="lazy">
+        </div>
+        <div class="chart-container">
+            <canvas id="chart6" width="400" height="200"></canvas>
+        </div>
+    </div>
+    <div class="item-container" id="arcaneFragment">
+        <h2>Fun&Sun Weapon Case</h2>
+        <div class="collection-name">
+            <img src="https://so2-market-data.vercel.app/So2_Fun&Sun_Collection.png" alt="Ícone da coleção" class="collection-icon" loading="lazy">Fun&Sun Collection
+        </div>
+        <div class="item-image">
+            <img src="https://so2-market-data.vercel.app/So2_Fun&Sun_Weapon_Case.png" alt="item" width="100" oncontextmenu="return false" loading="lazy">
+        </div>
+        <div class="chart-container">
+            <canvas id="chart7" width="400" height="200"></canvas>
+        </div>
+    </div>
+    <div class="item-container" id="arcaneFragment">
+        <h2>Reforged Gloves Case</h2>
+        <div class="collection-name">
+            <img src="https://so2-market-data.vercel.app/So2_Reforged_Collection.png" alt="Ícone da coleção" class="collection-icon" loading="lazy">Reforged Collection
+        </div>
+        <div class="item-image">
+            <img src="https://so2-market-data.vercel.app/So2_Reforged_Gloves_Case.png" alt="item" width="100" oncontextmenu="return false" loading="lazy">
+        </div>
+        <div class="chart-container">
+            <canvas id="chart8" width="400" height="200"></canvas>
+        </div>
+    </div>
+    <div class="item-container" id="arcaneFragment">
+        <h2>Reforged Weapon Case</h2>
+        <div class="collection-name">
+            <img src="https://so2-market-data.vercel.app/So2_Reforged_Collection.png" alt="Ícone da coleção" class="collection-icon" loading="lazy">Reforged Collection
+        </div>
+        <div class="item-image">
+            <img src="https://so2-market-data.vercel.app/So2_Reforged_Weapon_Case.png" alt="item" width="100" oncontextmenu="return false" loading="lazy">
+        </div>
+        <div class="chart-container">
+            <canvas id="chart9" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Não oficial. Histórico de preços do Standoff 2.</p>
+    </div>
+
+    <script>
+        // Função para criar gráficos
+        function createChart(chartId, labels, data, unidades, alugueis, rarity) {
+            var ctx = document.getElementById(chartId).getContext('2d');
+            var colors = [];
+            for (let i = 1; i < data.length; i++) {
+                if (data[i] > data[i - 1]) {
+                    colors.push('#00ff00'); // Verde para aumento
+                } else {
+                    colors.push('#ff0000'); // Vermelho para diminuição
+                }
+            }
+
+            // Calcula a variação percentual
+            var percentageChanges = calculatePercentageChange(data);
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels, // Deixa as labels para o eixo X
+                    datasets: [{
+                        label: 'Valor',
+                        data: data,
+                        borderColor: '#00ff00',
+                        backgroundColor: 'rgba(0, 255, 0, 0.2)',
+                        borderWidth: 0.5,
+                        pointBorderColor: function(context) {
+                            return context.dataIndex === 0 ? '#00ff00' : colors[context.dataIndex - 1];
+                        },
+                        pointBackgroundColor: function(context) {
+                            return context.dataIndex === 0 ? '#00ff00' : colors[context.dataIndex - 1];
+                        },
+                        pointRadius: 2
+                    }]
+                },
+                options: {
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                title: function(context) {
+                                    return context[0].label || ''; // Apenas a label do ponto que está sendo mostrado
+                                },
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y.toLocaleString('pt-BR') + ' Golds';
+                                    }
+                                    // Adicionando a variação percentual
+                                    let percentage = percentageChanges[context.dataIndex] || 0;
+                                    label += ` (${percentage}%)`;
+                                    return label;
+                                },
+                                afterBody: function(context) {
+                                    let unidadesText = `Unidades: ${unidades[context[0].dataIndex]}`;
+                                    let aluguelValue = alugueis[context[0].dataIndex];
+                                    let alugueisText = aluguelValue === 0 ? "Aluguel: Indisponível" : `Aluguel: ${aluguelValue} Golds`;
+                                    return [
+                                        unidadesText,
+                                        alugueisText,
+                                        `Rarity: ${rarity.charAt(0).toUpperCase() + rarity.slice(1)}`
+                                    ];
+
+                                }
+                            },
+                            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                            borderColor: 'transparent',
+                            borderWidth: 1,
+                        }
+                    },
+                    scales: {
+                        y: {
+                            position: 'right',
+                            beginAtZero: true,
+                            grid: {
+                                color: 'transparent'
+                            },
+                            border: {
+                                color: '#d3d3d3'
+                            },
+                            ticks: {
+                                maxRotation: 0,
+                                minRotation: 0,
+                                font: {
+                                    size: 10
+                                },
+                                color: '#00ff00'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                display: false, // Esconde as labels do eixo X
+                                maxRotation: 0,
+                                minRotation: 0,
+                                font: {
+                                    size: 9
+                                },
+                                color: 'white'
+                            },
+                            grid: {
+                                color: '#FFFFFF1A'
+                            },
+                            border: {
+                                color: '#d3d3d3'
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeInOutQuad'
+                    }
+                }
+            });
+        }
+
+        // Função para adicionar legendas
+        function addLegend(chartId, rarity) {
+            const rarityColors = {
+                'nameless': 'rarity-nameless-legend',
+                'arcane': 'rarity-arcane-legend',
+                'legendary': 'rarity-legendary-legend',
+                'epic': 'rarity-epic-legend',
+                'rare': 'rarity-rare-legend',
+                'uncommon': 'rarity-uncommon-legend',
+            };
+            const rarityClass = rarityColors[rarity] || '';
+
+            const legendContainer = document.createElement('div');
+            legendContainer.className = 'legend-container';
+
+            const rarityLegend = document.createElement('div');
+            rarityLegend.className = `rarity-legend ${rarityClass}`;
+
+            const legendText = document.createElement('div');
+            legendText.className = 'legend-text';
+            legendText.textContent = rarity.charAt(0).toUpperCase() + rarity.slice(1);
+
+            legendContainer.appendChild(rarityLegend);
+            legendContainer.appendChild(legendText);
+
+            document.getElementById(chartId).parentNode.appendChild(legendContainer);
+        }
+
+        // Função para converter valores
+        function convertValue(value) {
+            return parseFloat(value.replace(/\./g, '').replace(',', '.'));
+        }
+
+        // Função para calcular a variação percentual
+        function calculatePercentageChange(data) {
+            let changes = [];
+            for (let i = 0; i < data.length; i++) {
+                if (i === 0) {
+                    changes.push(null); // Sem variação para o primeiro valor
+                } else {
+                    let change = ((data[i] - data[i - 1]) / data[i - 1]) * 100;
+                    changes.push(change.toFixed(2));
+                }
+            }
+            return changes;
+        }
+
+        // Função para criar gráficos para os itens
+        function createCharts() {
+            // Dados do primeiro gráfico
+            const item1Values = [
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+            ];
+            const item1Unidades = [0, 0, 0, 0, 0, ];
+            const item1Alugueis = [0, 0, 0, 0, 0, ];
+
+            createChart(
+                'chart1',
+                ['0 Jan 2020', '0 Mar 2022', '0 Mar 2022', '0 Mai 2022', '0 Mai 2022'],
+                item1Values,
+                item1Unidades,
+                item1Alugueis,
+                'Container'
+            );
+
+            // Dados do segundo gráfico
+            const item2Values = [
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+            ];
+            const item2Unidades = [0, 0, 0, 0, 0, ];
+            const item2Alugueis = [0, 0, 0, 0, 0, ];
+
+            createChart(
+                'chart2',
+                ['0 Jan 2020', '0 Mar 2022', '0 Mar 2022', '0 Mai 2022', '0 Mai 2022'],
+                item2Values,
+                item2Unidades,
+                item2Alugueis,
+                'Container'
+            );
+
+            // Dados do terceiro gráfico
+            const item3Values = [
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+            ];
+            const item3Unidades = [0, 0, 0, 0, 0, ];
+            const item3Alugueis = [0, 0, 0, 0, 0, ];
+
+            createChart(
+                'chart3',
+                ['0 Jan 2020', '0 Mar 2022', '0 Mar 2022', '0 Mai 2022', '0 Mai 2022'],
+                item3Values,
+                item3Unidades,
+                item3Alugueis,
+                'Container'
+            );
+
+            const item4Values = [
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+            ];
+            const item4Unidades = [0, 0, 0, 0, 0, ];
+            const item4Alugueis = [0, 0, 0, 0, 0, ];
+
+            createChart(
+                'chart4',
+                ['0 Jan 2020', '0 Mar 2022', '0 Mar 2022', '0 Mai 2022', '0 Mai 2022'],
+                item4Values,
+                item4Unidades,
+                item4Alugueis,
+                'Container'
+            );
+
+            const item5Values = [
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+
+            ];
+            const item5Unidades = [58, 53, 65, 63, 66, 52, 62, 67, 74, 74];
+            const item5Alugueis = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            createChart(
+                'chart5',
+                ['16 Mar 2022 ', '30 Mar 2022', '18 Abr 2022', '1 Mai 2022', '30 Mai 2022', '8 Jun 2022', '14 Jun 2022 ', '17 Jun 2022 ', '3 Set 2022', '24 Out 2022'],
+                item5Values,
+                item5Unidades,
+                item5Alugueis,
+                'Container'
+            );
+
+            const item6Values = [
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0')
+            ];
+            const item6Unidades = [0, 0, 0, 0, 0, 0];
+            const item6Alugueis = [0, 0, 0, 0, 0, 0, 0];
+
+            createChart(
+                'chart6',
+                ['0 Mar 2022', '18 Abr 2022', '1 Mai 2022', '30 Mai 2022', '8 Jun 2022 ', '17 Jun 2022 ', ],
+                item6Values,
+                item6Unidades,
+                item6Alugueis,
+                'Container'
+            );
+
+            const item7Values = [
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0')
+            ];
+            const item7Unidades = [0, 0, 0, 0, 0, 0];
+            const item7Alugueis = [0, 0, 0, 0, 0, 0];
+
+            createChart(
+                'chart7',
+                ['0 Mar 2022', '18 Abr 2022', '1 Mai 2022', '30 Mai 2022', '8 Jun 2022 ', '17 Jun 2022 ', ],
+                item7Values,
+                item7Unidades,
+                item7Alugueis,
+                'Container'
+            );
+
+            const item8Values = [
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+            ];
+            const item8Unidades = [0, 0, 0, 0, 0, ];
+            const item8Alugueis = [0, 0, 0, 0, 0, ];
+
+            createChart(
+                'chart8',
+                ['0 Jan 2020', '0 Mar 2022', '0 Mar 2022', '0 Mai 2022', '0 Mai 2022'],
+                item8Values,
+                item8Unidades,
+                item8Alugueis,
+                'Container'
+            );
+            const item9Values = [
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+            ];
+            const item9Unidades = [0, 0, 0, 0, 0, ];
+            const item9Alugueis = [0, 0, 0, 0, 0, ];
+
+            createChart(
+                'chart9',
+                ['0 Jan 2020', '0 Mar 2022', '0 Mar 2022', '0 Mai 2022', '0 Mai 2022'],
+                item9Values,
+                item9Unidades,
+                item9Alugueis,
+                'Container'
+            );
+        }
+        // Adicionar legendas
+        addLegend('chart1', 'Container');
+        addLegend('chart2', 'Container');
+        addLegend('chart3', 'Container');
+        addLegend('chart4', 'Container');
+        addLegend('chart5', 'Container');
+        addLegend('chart6', 'Container');
+        addLegend('chart7', 'Container');
+        addLegend('chart8', 'Container');
+        addLegend('chart9', 'Container');
+        // Criar gráficos ao carregar a página
+        window.onload = createCharts;
+
+        // Função para filtrar itens
+        function filterItems() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const items = document.querySelectorAll('.item-container');
+            items.forEach(item => {
+                const title = item.querySelector('h2').textContent.toLowerCase();
+                if (title.includes(input)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Função para mostrar/ocultar opções de filtro
+        document.getElementById('filterButton').addEventListener('click', () => {
+            const filterOptions = document.getElementById('filterOptions');
+            filterOptions.style.display = filterOptions.style.display === 'none' || !filterOptions.style.display ? 'block' : 'none';
+        });
+
+        // Ocultar filtro ao clicar fora
+        document.addEventListener('click', function(event) {
+            const filterButton = document.getElementById('filterButton');
+            const filterOptions = document.getElementById('filterOptions');
+
+            if (!filterButton.contains(event.target) && !filterOptions.contains(event.target)) {
+                filterOptions.style.display = 'none';
+            }
+        });
+
+        function redirecionarParaTodos() {
+            window.location.href = "https://so2-market-data.vercel.app/Website%20Marketplace.HTML";
+        }
+
+        function redirecionarParaFragmentos() {
+            window.location.href = "https://so2-market-data.vercel.app/Marketplace%20Fragment.html";
+        }
+
+        function redirecionarParaFacas() {
+            window.location.href = "https://so2-market-data.vercel.app/Marketplace%20Facas.html";
+        }
+
+        function redirecionarParaNameless() {
+            window.location.href = "https://so2-market-data.vercel.app/Marketplace%20Nameless.Html";
+        }
+        //otimizar grafico
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const lazyGraphs = [].slice.call(document.querySelectorAll(".lazy-graph"));
+
+            if ("IntersectionObserver" in window) {
+                const lazyGraphObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const graphContainer = entry.target;
+                            const src = graphContainer.getAttribute("data-src");
+                            graphContainer.querySelector("img").src = src;
+                            observer.unobserve(graphContainer);
+                        }
+                    });
+                });
+
+                lazyGraphs.forEach(graph => {
+                    lazyGraphObserver.observe(graph);
+                });
+            } else {
+
+                lazyGraphs.forEach(graph => {
+                    const src = graph.getAttribute("data-src");
+                });
+            }
+        });
+
+        function renderChart() {
+            requestAnimationFrame(() => {
+                // Código para renderizar o gráfico
+            });
+        }
+    </script>
+</body>
+
+</html>
