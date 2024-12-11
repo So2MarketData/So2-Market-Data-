@@ -436,121 +436,194 @@
     </div>
 
     <script>
-        // Função para criar gráficos
         function createChart(chartId, labels, data, unidades, alugueis, rarity) {
-            var ctx = document.getElementById(chartId).getContext('2d');
-            var colors = [];
-            for (let i = 1; i < data.length; i++) {
-                if (data[i] > data[i - 1]) {
-                    colors.push('#00ff00'); // Verde para aumento
-                } else {
-                    colors.push('#ff0000'); // Vermelho para diminuição
-                }
-            }
+    var ctx = document.getElementById(chartId).getContext('2d');
+    var colors = [];
+    for (let i = 1; i < data.length; i++) {
+        if (data[i] > data[i - 1]) {
+            colors.push('#00ff00'); // Verde para aumento
+        } else {
+            colors.push('#ff0000'); // Vermelho para diminuição
+        }
+    }
 
-            // Calcula a variação percentual
-            var percentageChanges = calculatePercentageChange(data);
+    var percentageChanges = calculatePercentageChange(data);
 
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels, // Deixa as labels para o eixo X
-                    datasets: [{
-                        label: 'Valor',
-                        data: data,
-                        borderColor: '#00ff00',
-                        backgroundColor: 'rgba(0, 255, 0, 0.2)',
-                        borderWidth: 0.5,
-                        pointBorderColor: function(context) {
-                            return context.dataIndex === 0 ? '#00ff00' : colors[context.dataIndex - 1];
-                        },
-                        pointBackgroundColor: function(context) {
-                            return context.dataIndex === 0 ? '#00ff00' : colors[context.dataIndex - 1];
-                        },
-                        pointRadius: 2
-                    }]
+    const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Valor',
+                data: data,
+                borderColor: '#00ff00',
+                backgroundColor: 'rgba(0, 255, 0, 0.2)',
+                borderWidth: 0.5,
+                pointBorderColor: function(context) {
+                    return context.dataIndex === 0 ? '#00ff00' : colors[context.dataIndex - 1];
                 },
-                options: {
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                title: function(context) {
-                                    return context[0].label || ''; // Apenas a label do ponto que está sendo mostrado
-                                },
-                                label: function(context) {
-                                    let label = context.dataset.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed.y !== null) {
-                                        label += context.parsed.y.toLocaleString('pt-BR') + ' Golds';
-                                    }
-                                    // Adicionando a variação percentual
-                                    let percentage = percentageChanges[context.dataIndex] || 0;
-                                    label += ` (${percentage}%)`;
-                                    return label;
-                                },
-                                afterBody: function(context) {
-                                    let unidadesText = `Unidades: ${unidades[context[0].dataIndex]}`;
-                                    let aluguelValue = alugueis[context[0].dataIndex];
-                                    let alugueisText = aluguelValue === 0 ? "Aluguel: Indisponível" : `Aluguel: ${aluguelValue} Golds`;
-                                    return [
-                                        unidadesText,
-                                        alugueisText,
-                                        `Rarity: ${rarity.charAt(0).toUpperCase() + rarity.slice(1)}`
-                                    ];
-
-                                }
-                            },
-                            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                            borderColor: 'transparent',
-                            borderWidth: 1,
-                        }
-                    },
-                    scales: {
-                        y: {
-                            position: 'right',
-                            beginAtZero: true,
-                            grid: {
-                                color: 'transparent'
-                            },
-                            border: {
-                                color: '#d3d3d3'
-                            },
-                            ticks: {
-                                maxRotation: 0,
-                                minRotation: 0,
-                                font: {
-                                    size: 10
-                                },
-                                color: '#00ff00'
-                            }
+                pointBackgroundColor: function(context) {
+                    return context.dataIndex === 0 ? '#00ff00' : colors[context.dataIndex - 1];
+                },
+                pointRadius: 2
+            }]
+        },
+        options: {
+            plugins: {
+                tooltip: {
+                    enabled: true,
+                    intersect: false,
+                    mode: 'index',
+                    callbacks: {
+                        title: function(context) {
+                            return context[0].label || '';
                         },
-                        x: {
-                            ticks: {
-                                display: false, // Esconde as labels do eixo X
-                                maxRotation: 0,
-                                minRotation: 0,
-                                font: {
-                                    size: 9
-                                },
-                                color: 'white'
-                            },
-                            grid: {
-                                color: '#FFFFFF1A'
-                            },
-                            border: {
-                                color: '#d3d3d3'
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
                             }
+                            if (context.parsed.y !== null) {
+                                label += context.parsed.y.toLocaleString('pt-BR') + ' Golds';
+                            }
+                            let percentage = percentageChanges[context.dataIndex] || 0;
+                            label += ` (${percentage}%)`;
+                            return label;
+                        },
+                        afterBody: function(context) {
+                            let unidadesText = `Unidades: ${unidades[context[0].dataIndex]}`;
+                            let aluguelValue = alugueis[context[0].dataIndex];
+                            let alugueisText = aluguelValue === 0 ? "Aluguel: Indisponível" : `Aluguel: ${aluguelValue} Golds`;
+                            return [
+                                unidadesText,
+                                alugueisText,
+                                `Rarity: ${rarity.charAt(0).toUpperCase() + rarity.slice(1)}`
+                            ];
                         }
                     },
-                    animation: {
-                        duration: 2000,
-                        easing: 'easeInOutQuad'
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                    borderColor: 'transparent',
+                    borderWidth: 1,
+                }
+            },
+            scales: {
+                y: {
+                    position: 'right',
+                    beginAtZero: true,
+                    grid: {
+                        color: 'transparent'
+                    },
+                    border: {
+                        color: '#d3d3d3'
+                    },
+                    ticks: {
+                        maxRotation: 0,
+                        minRotation: 0,
+                        font: {
+                            size: 10
+                        },
+                        color: '#00ff00'
+                    }
+                },
+                x: {
+                    ticks: {
+                        display: false,
+                        maxRotation: 0,
+                        minRotation: 0,
+                        font: {
+                            size: 9
+                        },
+                        color: 'white'
+                    },
+                    grid: {
+                        color: '#FFFFFF1A'
+                    },
+                    border: {
+                        color: '#d3d3d3'
                     }
                 }
-            });
+            },
+            animation: {
+                duration: 2000,
+                easing: 'easeInOutQuad'
+            },
+            interaction: {
+                mode: 'index',
+                intersect: false
+            }
         }
+    });
+
+    // Evitar atraso no tooltip: uso de eventos de toque
+    let isTooltipActive = false;
+
+    function enableTooltip() {
+        if (!isTooltipActive) {
+            chart.options.plugins.tooltip.enabled = true;
+            chart.update();
+            isTooltipActive = true;
+        }
+    }
+
+    function disableTooltip() {
+        if (isTooltipActive) {
+            chart.options.plugins.tooltip.enabled = false;
+            chart.update();
+            isTooltipActive = false;
+        }
+    }
+
+    // Evento para clicar ou tocar
+    document.addEventListener('click', function(event) {
+        const chartCanvas = document.getElementById(chartId);
+        const rect = chartCanvas.getBoundingClientRect();
+        const isClickInside =
+            event.clientX >= rect.left &&
+            event.clientX <= rect.right &&
+            event.clientY >= rect.top &&
+            event.clientY <= rect.bottom;
+
+        // Ação ao clicar/tocar no gráfico
+        if (isClickInside) {
+            enableTooltip();
+        } else {
+            disableTooltip();
+        }
+    });
+
+    // Detectar toque e deslizar
+    document.addEventListener('touchstart', function(event) {
+        const chartCanvas = document.getElementById(chartId);
+        const rect = chartCanvas.getBoundingClientRect();
+        const isTouchInside =
+            event.touches[0].clientX >= rect.left &&
+            event.touches[0].clientX <= rect.right &&
+            event.touches[0].clientY >= rect.top &&
+            event.touches[0].clientY <= rect.bottom;
+
+        if (isTouchInside) {
+            enableTooltip();
+        } else {
+            disableTooltip();
+        }
+    });
+
+    document.addEventListener('touchmove', function(event) {
+        const chartCanvas = document.getElementById(chartId);
+        const rect = chartCanvas.getBoundingClientRect();
+        const isTouchInside =
+            event.touches[0].clientX >= rect.left &&
+            event.touches[0].clientX <= rect.right &&
+            event.touches[0].clientY >= rect.top &&
+            event.touches[0].clientY <= rect.bottom;
+
+        if (isTouchInside) {
+            enableTooltip();
+        } else {
+            disableTooltip();
+        }
+    });
+}
 
         // Função para adicionar legendas
         function addLegend(chartId, rarity) {
