@@ -220,7 +220,7 @@
         <img src="https://so2-market-data.vercel.app/So2_Market_Data_Logo.png" alt="Logo do Meu Site">
     </div>
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Buscar item..." onkeyup="filterItems()">
+        <input type="text" id="searchInput" placeholder="Buscar Container..." onkeyup="filterItems()">
     </div>
     <div class="filter-container">
         <button id="filterButton">Filtro</button>
@@ -704,15 +704,24 @@
                 convertValue('5.500'),
                 convertValue('5.500'),
                 convertValue('5.373'),
-                convertValue('5.799')
-                
+                convertValue('5.799'),
+                convertValue('5.474'),
+                convertValue('5.645'),
+                convertValue('5.799'),
+                convertValue('5.800'),
+                convertValue('7.475'),
+                convertValue('7.150'),
+                convertValue('7.999'),
+                convertValue('8.887'),
+                convertValue('7.850')
             ];
-            const item1Unidades = [280, 289, 280, 267, 269, 275, 269, 301, 305, 284, 293, 299, 302, 300, 281, 267, 212, 220, 231, 223, 229, 220, 220, 207, 191, 207, 188, 191, 182];
-            const item1Alugueis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            const item1Unidades = [280, 289, 280, 267, 269, 275, 269, 301, 305, 284, 293, 299, 302, 300, 281, 267, 212, 220, 231, 223, 229, 220, 220, 207, 191, 207, 188, 191, 182, 180, 185, 167, 164, 144, 143, 139, 141, 136];
+            const item1Alugueis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0];
 
             createChart(
                 'chart1',
-                ['16 Mar 2022', '22 Mar 2022', '30 Mar 2022', '18 Abr 2022', '30 Abr 2022', '10 Mai 2022', '19 Mai 2022','30 Mai 2022','11 Jun 2022','23 Jun 2022','27 Jun 2022','5 Jul 2022','15 Jul 2022','1 Ago 2022','18 Ago 2022','29 Ago 2022','5 Set 2022','16 Set 2022','27 Set 2022','07 Out 2022','15 Out 2022','28 Out 2022','5 Nov 2022','18 Nov 2022','29 Nov 2022','6 Dez 2022','18 Dez 2022','27 Dez 2022','03 Jan 2023'],
+                ['16 Mar 2022', '22 Mar 2022', '30 Mar 2022', '18 Abr 2022', '30 Abr 2022', '10 Mai 2022', '19 Mai 2022','30 Mai 2022','11 Jun 2022','23 Jun 2022','27 Jun 2022','5 Jul 2022','15 Jul 2022','1 Ago 2022','18 Ago 2022','29 Ago 2022','5 Set 2022','16 Set 2022','27 Set 2022','07 Out 2022','15 Out 2022','28 Out 2022','5 Nov 2022','18 Nov 2022','29 Nov 2022','6 Dez 2022','18 Dez 2022','27 Dez 2022',
+                 '03 Jan 2023','16 Jan 2023','29 Jan 2023','07 Fev 2023','18 Fev 2023','26 Fev 2023','04 Mar 2023','13 Mar 2023','29 Mar 2023','06 Abr  2023'],
                 item1Values,
                 item1Unidades,
                 item1Alugueis,
@@ -749,14 +758,24 @@
                 convertValue('479'),
                 convertValue('500'),
                 convertValue('489'),
-                convertValue('690')
+                convertValue('690'),
+                convertValue('677'),
+                convertValue('580'),
+                convertValue('589,99'),
+                convertValue('618'),
+                convertValue('795'),
+                convertValue('729'),
+                convertValue('743'),
+                convertValue('832'),
+                convertValue('580'),
             ];
-            const item2Unidades = [36.859, 36.488, 36.052, 33.378, 31.581, 30.813, 30.403, 29.604, 28.754, 27.546, 27.220, 26.766, 26.333, 25.814, 23.367, 21.834, 21.562, 21.466, 20.850, 20.264, 19.697, 18.418, 17.946, 17.087, 16.746, 16.411, 15.863, 15.692, 14.908,];
-            const item2Alugueis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            const item2Unidades = [36.859, 36.488, 36.052, 33.378, 31.581, 30.813, 30.403, 29.604, 28.754, 27.546, 27.220, 26.766, 26.333, 25.814, 23.367, 21.834, 21.562, 21.466, 20.850, 20.264, 19.697, 18.418, 17.946, 17.087, 16.746, 16.411, 15.863, 15.692, 14.908, 15.041, 14.831, 14.226, 13.320, 12.888, 12.614, 12.481, 12.149, 12.048];
+            const item2Alugueis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0];
 
             createChart(
                 'chart2',
-                ['16 Mar 2022', '22 Mar 2022', '30 Mar 2022', '18 Abr 2022', '30 Abr 2022', '10 Mai 2022', '19 Mai 2022', '30 Mai 2022','11 Jun 2022','23 Jun 2022','27 Jun 2022','5 Jul 2022','15 Jul 2022','1 Ago 2022','18 Ago 2022','29 Ago 2022','5 Set 2022','16 Set 2022','27 Set 2022','07 Out 2022','15 Out 2022','28 Out 2022','5 Nov 2022','18 Nov 2022','29 Nov 2022','6 Dez 2022','18 Dez 2022','27 Dez 2022','03 Jan 2023'],
+                ['16 Mar 2022', '22 Mar 2022', '30 Mar 2022', '18 Abr 2022', '30 Abr 2022', '10 Mai 2022', '19 Mai 2022', '30 Mai 2022','11 Jun 2022','23 Jun 2022','27 Jun 2022','5 Jul 2022','15 Jul 2022','1 Ago 2022','18 Ago 2022','29 Ago 2022','5 Set 2022','16 Set 2022','27 Set 2022','07 Out 2022','15 Out 2022','28 Out 2022','5 Nov 2022','18 Nov 2022','29 Nov 2022','6 Dez 2022','18 Dez 2022','27 Dez 2022',
+                 '03 Jan 2023','16 Jan 2023','29 Jan 2023','07 Fev 2023','18 Fev 2023','26 Fev 2023','04 Mar 2023','13 Mar 2023','29 Mar 2023','06 Abr  2023'],
                 item2Values,
                 item2Unidades,
                 item2Alugueis,
@@ -787,14 +806,24 @@
                 convertValue('240'),
                 convertValue('224'),
                 convertValue('224'),
-                convertValue('339')
+                convertValue('339'),
+                convertValue('338'),
+                convertValue('328'),
+                convertValue('323'),
+                convertValue('300'),
+                convertValue('400'),
+                convertValue('339'),
+                convertValue('364'),
+                convertValue('425'),
+                convertValue('265')
             ];
-            const item3Unidades = [68.812, 106.469, 99.284, 92.938, 91.495, 88.945, 85.325, 81.099, 76.446, 73.131, 70.784, 69.359, 67.172, 65.589, 63.365, 49.162, 47.363, 43.500, 40.065, 39.386, 37.425, 36.317, 33.758];
-            const item3Alugueis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0];
+            const item3Unidades = [68.812, 106.469, 99.284, 92.938, 91.495, 88.945, 85.325, 81.099, 76.446, 73.131, 70.784, 69.359, 67.172, 65.589, 63.365, 49.162, 47.363, 43.500, 40.065, 39.386, 37.425, 36.317, 33.758, 33.291, 32.091, 30.695, 28.920, 27.763, 27.244, 26.512, 25.555, 24.715];
+            const item3Alugueis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0];
 
             createChart(
                 'chart3',
-                ['25 Abr 2022', '30 Mai 2022', '11 Jun 2022','23 Jun 2022','27 Jun 2022','5 Jul 2022','15 Jul 2022','1 Ago 2022','18 Ago 2022','29 Ago 2022', '5 Set 2022','16 Set 2022','27 Set 2022','07 Out 2022','15 Out 2022','28 Out 2022','5 Nov 2022','18 Nov 2022','29 Nov 2022','6 Dez 2022','18 Dez 2022','27 Dez 2022','03 Jan 2023'],
+                ['25 Abr 2022', '30 Mai 2022', '11 Jun 2022','23 Jun 2022','27 Jun 2022','5 Jul 2022','15 Jul 2022','1 Ago 2022','18 Ago 2022','29 Ago 2022', '5 Set 2022','16 Set 2022','27 Set 2022','07 Out 2022','15 Out 2022','28 Out 2022','5 Nov 2022','18 Nov 2022','29 Nov 2022','6 Dez 2022','18 Dez 2022','27 Dez 2022',
+                 '03 Jan 2023','16 Jan 2023','29 Jan 2023','07 Fev 2023','18 Fev 2023','26 Fev 2023','04 Mar 2023','13 Mar 2023','29 Mar 2023','06 Abr  2023'],
                 item3Values,
                 item3Unidades,
                 item3Alugueis,
@@ -830,14 +859,24 @@
                 convertValue('5.393'),
                 convertValue('4.499'),
                 convertValue('4.845'),
-                convertValue('4.699')
+                convertValue('4.699'),
+                convertValue('3.780'),
+                convertValue('4.010'),
+                convertValue('4.550'),
+                convertValue('4.400'),
+                convertValue('4.740'),
+                convertValue('4.349'),
+                convertValue('4.645,43'),
+                convertValue('4.000'),
+                convertValue('3.680')
             ];
-            const item4Unidades = [140, 154, 159, 168, 176, 167, 163, 172, 188, 169, 174, 183, 181, 205, 188, 233, 191, 191, 184, 175, 195, 185, 175, 152, 167, 151, 151, 160, 190];
-            const item4Alugueis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            const item4Unidades = [140, 154, 159, 168, 176, 167, 163, 172, 188, 169, 174, 183, 181, 205, 188, 233, 191, 191, 184, 175, 195, 185, 175, 152, 167, 151, 151, 160, 190, 240, 244, 187, 190, 173, 188, 192, 186, 188];
+            const item4Alugueis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0];
 
             createChart(
                 'chart4',
-                ['16 Mar 2022', '22 Mar 2022', '30 Mar 2022', '18 Abr 2022', '30 Abr 2022', '10 Mai 2022','19 Mai 2022','30 Mai 2022','11 Jun 2022','23 Jun 2022','27 Jun 2022','5 Jul 2022','15 Jul 2022','1 Ago 2022','18 Ago 2022','29 Ago 2022','5 Set 2022','16 Set 2022','27 Set 2022','07 Out 2022','15 Out 2022','28 Out 2022','5 Nov 2022','18 Nov 2022','29 Nov 2022','6 Dez 2022','18 Dez 2022','27 Dez 2022','03 Jan 2023'],
+                ['16 Mar 2022', '22 Mar 2022', '30 Mar 2022', '18 Abr 2022', '30 Abr 2022', '10 Mai 2022','19 Mai 2022','30 Mai 2022','11 Jun 2022','23 Jun 2022','27 Jun 2022','5 Jul 2022','15 Jul 2022','1 Ago 2022','18 Ago 2022','29 Ago 2022','5 Set 2022','16 Set 2022','27 Set 2022','07 Out 2022','15 Out 2022','28 Out 2022','5 Nov 2022','18 Nov 2022','29 Nov 2022','6 Dez 2022','18 Dez 2022','27 Dez 2022',
+                 '03 Jan 2023','16 Jan 2023','29 Jan 2023','07 Fev 2023','18 Fev 2023','26 Fev 2023','04 Mar 2023','13 Mar 2023','29 Mar 2023','06 Abr  2023'],
                 item4Values,
                 item4Unidades,
                 item4Alugueis,
@@ -845,7 +884,7 @@
             );
 
             const item5Values = [
-                convertValue('0'),
+                convertValue('107'),
                 convertValue('0'),
                 convertValue('0'),
                 convertValue('0'),
@@ -857,12 +896,12 @@
                 convertValue('0')
 
             ];
-            const item5Unidades = [58, 53, 65, 63, 66, 52, 62, 67, 74, 74];
+            const item5Unidades = [131.031, 53, 65, 63, 66, 52, 62, 67, 74, 74];
             const item5Alugueis = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
             createChart(
                 'chart5',
-                ['16 Mar 2022 ', '30 Mar 2022', '18 Abr 2022', '1 Mai 2022', '30 Mai 2022', '8 Jun 2022', '14 Jun 2022 ', '17 Jun 2022 ', '3 Set 2022', '24 Out 2022'],
+                ['06 Abr  2023', '30 Mar 2022', '18 Abr 2022', '1 Mai 2022', '30 Mai 2022', '8 Jun 2022', '14 Jun 2022 ', '17 Jun 2022 ', '3 Set 2022', '24 Out 2022'],
                 item5Values,
                 item5Unidades,
                 item5Alugueis,
@@ -898,14 +937,24 @@
                 convertValue('1.450'),
                 convertValue('1.565'),
                 convertValue('1.500'),
+                convertValue('1.799'),
+                convertValue('1.849'),
+                convertValue('1.870'),
+                convertValue('1.979'),
+                convertValue('1.899'),
+                convertValue('1.688'),
+                convertValue('1.770'),
+                convertValue('2.130'),
+                convertValue('2.500'),
                 convertValue('1.799')
             ];
-            const item6Unidades = [1.279, 1.272, 1.289, 1.263, 1.233, 1261, 1.230, 1.198, 1.168, 1.074, 1081, 1.108, 1.075, 1.023, 967, 848, 892, 862, 858, 846, 740, 717, 800, 811, 741, 788, 772, 758, 756];
-            const item6Alugueis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0];
+            const item6Unidades = [1.279, 1.272, 1.289, 1.263, 1.233, 1261, 1.230, 1.198, 1.168, 1.074, 1081, 1.108, 1.075, 1.023, 967, 848, 892, 862, 858, 846, 740, 717, 800, 811, 741, 788, 772, 758, 756, 780, 733, 668, 676, 687, 656, 631, 596, 610];
+            const item6Alugueis = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0];
 
             createChart(
                 'chart6',
-                ['16 Mar 2022', '22 Mar 2022', '30 Mar 2022', '18 Abr 2022', '30 Abr 2022 ', '10 Mai 2022 ','19 Mai 2022','30 Mai 2022','11 Jun 2022','23 Jun 2022','27 Jun 2022','5 Jul 2022','15 Jul 2022','1 Ago 2022','18 Ago 2022','29 Ago 2022','5 Set 2022','16 Set 2022','27 Set 2022','07 Out 2022','15 Out 2022','28 Out 2022','5 Nov 2022','18 Nov 2022','29 Nov 2022','6 Dez 2022','18 Dez 2022','27 Dez 2022','03 Jan 2023'],
+                ['16 Mar 2022', '22 Mar 2022', '30 Mar 2022', '18 Abr 2022', '30 Abr 2022 ', '10 Mai 2022 ','19 Mai 2022','30 Mai 2022','11 Jun 2022','23 Jun 2022','27 Jun 2022','5 Jul 2022','15 Jul 2022','1 Ago 2022','18 Ago 2022','29 Ago 2022','5 Set 2022','16 Set 2022','27 Set 2022','07 Out 2022','15 Out 2022','28 Out 2022','5 Nov 2022','18 Nov 2022','29 Nov 2022','6 Dez 2022','18 Dez 2022','27 Dez 2022',
+                 '03 Jan 2023','16 Jan 2023','29 Jan 2023','07 Fev 2023','18 Fev 2023','26 Fev 2023','04 Mar 2023','13 Mar 2023','29 Mar 2023','06 Abr  2023'],
                 item6Values,
                 item6Unidades,
                 item6Alugueis,
