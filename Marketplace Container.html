@@ -430,6 +430,18 @@
             <canvas id="chart15" width="400" height="200"></canvas>
         </div>
     </div>
+                  <div class="item-container" id="item10">
+        <h2>Forze Major 2024 Sticker Pack</h2>
+        <div class="collection-name">
+            <img src="https://so2-market-data.vercel.app/So2_Esports_Collection.png" alt="Ícone da coleção" class="collection-icon" loading="lazy">SO2 Esports Collection
+        </div>
+        <div class="item-image">
+            <img src="https://so2-market-data.vercel.app/So2_FORZE_Major_2024_StickerPack_.png" alt="item" width="100" oncontextmenu="return false" loading="lazy">
+        </div>
+        <div class="chart-container">
+            <canvas id="chart16" width="400" height="200"></canvas>
+        </div>
+    </div>
 
     <div class="footer">
         <p>Não oficial. Histórico de preços do Standoff 2.</p>
@@ -1143,6 +1155,24 @@
                 item15Values,
                 item15Unidades,
                 item15Alugueis,
+                'Container'
+          );
+          const item16Values = [
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+                convertValue('0'),
+            ];
+            const item16Unidades = [0, 0, 0, 0, 0, ];
+            const item16Alugueis = [0, 0, 0, 0, 0, ];
+
+            createChart(
+                'chart16',
+                ['0 Jan 2020', '0 Mar 2022', '0 Mar 2022', '0 Mai 2022', '0 Mai 2022'],
+                item16Values,
+                item16Unidades,
+                item16Alugueis,
                 'Container'
           );
         }
