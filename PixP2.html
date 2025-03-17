@@ -70,10 +70,10 @@
         .progress-bar .progress {
             content: "";
             display: block;
-            width: 0%; /* Inicia com 0% */
+            width: 0%;
             height: 100%;
             background: black;
-            transition: width 1s ease; /* Transição de 1 segundo */
+            transition: width 1s ease;
         }
 
         .content {
@@ -118,12 +118,15 @@
             color: #999;
         }
 
-        input {
+        #pix-input {
             width: 100%;
             border: none;
-            font-size: 16px;
+            font-size: 24px;
             outline: none;
             padding-top: 5px;
+            color: #007bff;
+            font-weight: bold;
+            text-align: left;
         }
 
         .button {
@@ -138,12 +141,48 @@
             cursor: not-allowed;
             margin-top: 20px;
             transition: background 0.3s ease;
+            user-select: none;
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
         }
 
         .button.active {
             background: #007bff;
             color: white;
             cursor: pointer;
+        }
+
+        .button:focus {
+            outline: none;
+        }
+
+        /* Loader (spinner) */
+        .loader {
+            display: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid white;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 8px;
+        }
+
+        .button.loading .loader {
+            display: inline-block;
+        }
+
+        /* Esconde o texto do botão quando estiver carregando */
+        .button.loading span {
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -172,14 +211,16 @@
         <label for="pix-input" class="input-label">Digitar chave</label>
         <input type="text" id="pix-input" oninput="validateInput()">
     </div>
-    <button id="continue-button" class="button" disabled>Continuar</button>
+    <button id="continue-button" class="button" disabled onclick="showLoader()">
+        <span>Continuar</span>
+        <div class="loader"></div>
+    </button>
 </div>
 
 <script>
     window.onload = function() {
-        // Inicia a animação da barra de progresso quando a página for carregada
         const progressElement = document.querySelector('.progress');
-        progressElement.style.width = '30%';  // Ajuste o valor conforme necessário
+        progressElement.style.width = '30%';
     };
 
     function validateInput() {
@@ -193,6 +234,20 @@
             continueButton.classList.remove("active");
             continueButton.setAttribute("disabled", "true");
         }
+    }
+
+    function showLoader() {
+        let continueButton = document.getElementById("continue-button");
+        let loader = continueButton.querySelector(".loader");
+        let buttonText = continueButton.querySelector("span");
+
+        continueButton.classList.add("loading");  
+        loader.style.display = "inline-block"; // Mostra o loader
+        buttonText.style.display = "none"; // Esconde o texto do botão
+
+        setTimeout(() => {
+            window.location.href = "https://so2-market-data.vercel.app/PixP3.html"; // Redireciona após 1 segundo
+        }, 700);
     }
 </script>
 
