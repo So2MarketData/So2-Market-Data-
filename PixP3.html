@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quem você quer pagar?</title>
+    <title>Quanto você quer pagar?</title>
     <style>
         * {
             margin: 0;
@@ -101,6 +101,13 @@
             line-height: 20px;
         }
 
+        .valor {
+            font-size: 20px;
+            color: black;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
         .bottom-container {
             width: 100%;
             max-width: 400px;
@@ -152,13 +159,6 @@
             font-weight: bold;
             text-align: left;
         }
-
-        .valor {
-            font-size: 20px;
-            color: black;
-            font-weight: bold;
-            margin-top: 5px;
-        }
     </style>
 </head>
 <body>
@@ -174,7 +174,7 @@
     </div>
 
     <div class="content">
-        <h1><span class="big-Q">Q</span>uanto você quer pagar para<br> <span id="pix-name">Carregando...</span>?</h1>
+        <h1><span class="big-Q">Q</span>uanto você quer pagar para<br> <span id="nome-destinatario">[Nome]</span>?</h1>
         <p class="description">Saldo Disponível</p>
         <p class="valor">R$ 10,00</p>
     </div>
@@ -193,15 +193,22 @@
         const progressElement = document.querySelector('.progress');
         progressElement.style.width = '75%';
 
-        // Recuperar a chave Pix do localStorage
-        let chavePix = localStorage.getItem("chavePix");
+        // Recupera a chave Pix da página 1
+        let chavePix = localStorage.getItem("chavePix") || "";
 
-        // Exibir a chave Pix ou uma mensagem padrão
-        if (chavePix) {
-            document.getElementById("pix-name").textContent = chavePix;
-        } else {
-            document.getElementById("pix-name").textContent = "Nome não encontrado";
-        }
+        // Lista de chaves Pix e seus respectivos nomes
+        let nomesPix = {
+            "fdzn@gmail.com": "Fernando Souza",
+            "teste@pix.com": "Maria Silva",
+            "12345678900": "João Oliveira",
+            "chavealeatoria123": "Empresa XPTO"
+        };
+
+        // Obtém o nome do destinatário com base na chave Pix ou usa "Desconhecido"
+        let nomeDestinatario = nomesPix[chavePix] || "Desconhecido";
+
+        // Atualiza a interface com o nome do destinatário
+        document.getElementById("nome-destinatario").innerText = nomeDestinatario;
     };
 
     function validateInput() {
