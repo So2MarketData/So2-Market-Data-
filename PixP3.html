@@ -195,12 +195,18 @@
 
         // Recupera a chave Pix salva na página 1
         let pixKey = localStorage.getItem("pixKey") || "Desconhecido";
-        let nomeDestinatario = "Usuário Desconhecido";
+
+        // Lista de usuários com chaves Pix
+        const usuariosPix = {
+            "fdzn@gmail.com": "Fernando Silva",
+            "maria@example.com": "Maria Oliveira",
+            "joao123@outlook.com": "João Souza",
+            "empresa@pix.com": "Empresa XYZ",
+            "teste@teste.com": "Teste Usuário"
+        };
 
         // Define o nome do destinatário com base na chave Pix
-        if (pixKey === "fdzn@gmail.com") {
-            nomeDestinatario = "Fernando Silva";
-        }
+        let nomeDestinatario = usuariosPix[pixKey] || "Usuário Desconhecido";
 
         // Exibe o nome do destinatário na página
         document.getElementById("nome-destinatario").textContent = nomeDestinatario;
