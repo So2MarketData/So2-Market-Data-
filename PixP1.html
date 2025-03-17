@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pix</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f5f7;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 360px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .back-button {
+            width: 16px; /* Reduzido */
+            height: 16px; /* Reduzido */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .back-button::before {
+            content: "";
+            display: block;
+            width: 8px;  /* Menor */
+            height: 8px;  /* Menor */
+            border-left: 2px solid black;
+            border-top: 2px solid black;
+            transform: rotate(-45deg);
+        }
+
+        .help-icon {
+            width: 24px;
+            height: 24px;
+            border: 1.5px solid black;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 35px; /* Espaçamento maior entre o título e o texto */
+        }
+
+        p {
+            font-size: 14.5px;
+          margin-bottom: 35px;
+            color: #333;
+        }
+
+        .btn-cadastrar {
+            margin-top: 15px;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            display: inline-block;
+            text-align: left;
+          margin-bottom: 35px;
+            width: auto;
+        }
+
+        .pix-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pix-button {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    position: relative;
+    border: 1px solid #ddd;
+    
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    box-shadow: none;
+}
+
+        .pix-button.active, .pix-button.blue {
+            background: #0f9bfd;
+            color: white;
+            border: none;
+        }
+
+        .installments {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: white;
+            color: #0f9bfd;
+            font-size: 10px;
+            padding: 3px 5px;
+            border-radius: 10px;
+        }
+        .installments2 {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #f6f2ff;
+            color: #0f9bfd;
+            font-size: 10px;
+            padding: 3px 5px;
+            border-radius: 10px;
+        }
+  
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: black;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer .edit-icon {
+            margin-left: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="back-button"></div>
+        <div class="help-icon">?</div>
+    </div>
+
+    <h1>Pix</h1>
+    <p>Cadastre uma chave Pix e faça transações 24 horas por dia. Use seu CPF, Celular, e-mail ou gere uma chave aleatória.</p>
+    
+    <div class="btn-cadastrar">Cadastrar chave</div>
+
+    <div class="pix-options">
+        <div class="pix-button blue" onclick="redirecionarPix()">
+    <span class="installments">Até 12x</span>
+    Fazer um Pix
+</div>
+        <div class="pix-button">Pagar contato ou favorito</div>
+        <div class="pix-button">
+            <span class="installments2">Até 12x</span>
+            Pagar QR Code
+        </div>
+        <div class="pix-button">Pix Copia e Cola</div>
+        <div class="pix-button">Receber</div>
+        <div class="pix-button">Pix Saque e Pix Troco</div>
+    </div>
+
+    <div class="footer">
+        Pagar sem chave Pix
+        <span class="edit-icon">✏️</span>
+    </div>
+</div>
+
+  <script>
+    function redirecionarPix() {
+        window.location.href = "https://sua-url-aqui.com"; // Redireciona na mesma aba
+    }
+  </script>
+</body>
+</html>
