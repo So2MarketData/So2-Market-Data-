@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem você quer pagar?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: space-between;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .back-button {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .back-button::before {
+            content: "";
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-left: 2px solid black;
+            border-top: 2px solid black;
+            transform: rotate(-45deg);
+            position: absolute;
+            left: 0;
+            top: 4px;
+        }
+
+        .close-button {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar .progress {
+            content: "";
+            display: block;
+            width: 0%; /* Inicia com 0% */
+            height: 100%;
+            background: black;
+            transition: width 1s ease; /* Transição de 1 segundo */
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 20px;
+        }
+
+        h1 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        h1 .big-Q {
+            font-size: 24px;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #666;
+            max-width: 300px;
+            line-height: 20px;
+        }
+
+        .bottom-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+
+        .input-container {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+
+        .input-label {
+            font-size: 20px;
+            color: #999;
+        }
+
+        input {
+            width: 100%;
+            border: none;
+            font-size: 16px;
+            outline: none;
+            padding-top: 5px;
+        }
+
+        .button {
+            width: 100%;
+            background: #e7e8f0;
+            color: #999;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 16px;
+            cursor: not-allowed;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .button.active {
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="back-button"></div>
+        <div class="close-button">&times;</div>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress"></div>
+    </div>
+
+    <div class="content">
+        <h1><span class="big-Q">Q</span>uem você quer pagar?</h1>
+        <p class="description">
+            Digite um nome, CPF/CNPJ, e-mail, <br> celular ou chave aleatória.
+        </p>
+    </div>
+</div>
+
+<div class="bottom-container">
+    <div class="input-container">
+        <label for="pix-input" class="input-label">Digitar chave</label>
+        <input type="text" id="pix-input" oninput="validateInput()">
+    </div>
+    <button id="continue-button" class="button" disabled>Continuar</button>
+</div>
+
+<script>
+    window.onload = function() {
+        // Inicia a animação da barra de progresso quando a página for carregada
+        const progressElement = document.querySelector('.progress');
+        progressElement.style.width = '30%';  // Ajuste o valor conforme necessário
+    };
+
+    function validateInput() {
+        let inputField = document.getElementById("pix-input");
+        let continueButton = document.getElementById("continue-button");
+
+        if (inputField.value.trim().length > 0) {
+            continueButton.classList.add("active");
+            continueButton.removeAttribute("disabled");
+        } else {
+            continueButton.classList.remove("active");
+            continueButton.setAttribute("disabled", "true");
+        }
+    }
+</script>
+
+</body>
+</html>
