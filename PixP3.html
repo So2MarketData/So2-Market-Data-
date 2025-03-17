@@ -70,7 +70,7 @@
         .progress-bar .progress {
             content: "";
             display: block;
-            width: 0%;
+            width: 75%;
             height: 100%;
             background: black;
             transition: width 1s ease;
@@ -174,7 +174,7 @@
     </div>
 
     <div class="content">
-        <h1><span class="big-Q">Q</span>uanto você quer pagar pra<br> nome?</h1>
+        <h1><span class="big-Q">Q</span>uanto você quer pagar para<br> <span id="pix-name">Carregando...</span>?</h1>
         <p class="description">Saldo Disponível</p>
         <p class="valor">R$ 10,00</p>
     </div>
@@ -192,6 +192,16 @@
     window.onload = function() {
         const progressElement = document.querySelector('.progress');
         progressElement.style.width = '75%';
+
+        // Recuperar a chave Pix do localStorage
+        let chavePix = localStorage.getItem("chavePix");
+
+        // Exibir a chave Pix ou uma mensagem padrão
+        if (chavePix) {
+            document.getElementById("pix-name").textContent = chavePix;
+        } else {
+            document.getElementById("pix-name").textContent = "Nome não encontrado";
+        }
     };
 
     function validateInput() {
